@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>채점 서버 Test</title>
+</head>
+<body>
+    <form method="post" action='/result'>
+        C++ 코드입력<br>
+        <textarea name="code" rows="20" cols="40">
+#include <iostream>
+
+int main () {
+    std::cout << "Hello, world!\n";
+}
+        </textarea><br>
+        <input type="submit" value="실행">
+        <input type="reset" value="삭제">
+    </form>
+</body>
+</html>
