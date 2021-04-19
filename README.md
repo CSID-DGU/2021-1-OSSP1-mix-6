@@ -2,6 +2,9 @@
 
 # 채점 서버 - Visual Studio Code 연동 테스트
 
+## 개요
+vscode에서 작성 중인 코드 ---> vscode 확장프로그램 ---> Flask 채점 서버 ---> 채점 프로그램(fork, execl로 생성)
+
 ### Requirements
 * python3, Flask가 설치된 리눅스 또는 Docker 실행가능 환경
 * Visual Studio Code
