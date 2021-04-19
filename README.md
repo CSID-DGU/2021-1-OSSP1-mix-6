@@ -25,5 +25,6 @@
     1. <img src="https://user-images.githubusercontent.com/48395704/115213596-a1d2f980-a13c-11eb-8187-3001511da1d9.png" width="60%" height="60%">
 
 ### 실행 gif
-![vsbuild](https://user-images.githubusercontent.com/48395704/115215973-01ca9f80-a13f-11eb-8476-18ecc1af59f1.gif)
+![vsbuild](https://user-images.githubusercontent.com/48395704/115218171-39d2e200-a141-11eb-9ce4-1afb7e26d772.gif)
+
 
