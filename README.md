@@ -21,7 +21,7 @@
 2. src/extension.ts 를 열고 F5 누르면 확장 프로그램 빌드 시작
 3. 빌드 후에 디버깅 모드로 들어가는데, 새로 뜬 창에 C++ 코드 입력 후 우클릭 -> Judge 클릭
     1. <img src="https://user-images.githubusercontent.com/48395704/115213315-5ddff480-a13c-11eb-971b-12acae56ca7f.png" width="60%" height="60%">
-4. Judge 클릭하면 디버그 콘솔에 다음과 같이 서버에서 C++ 코드를 실행시킨 결과를 받아옴
+4. Judge 클릭하면 서버에서 C++ 코드를 실행시킨 결과를 받아옴
     1. <img src="https://user-images.githubusercontent.com/48395704/115213596-a1d2f980-a13c-11eb-8187-3001511da1d9.png" width="60%" height="60%">
 
 ### 실행 gif
