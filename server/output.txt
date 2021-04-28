@@ -1,1 +1,1 @@
-something
+Hello, world!

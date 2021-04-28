@@ -1,10 +1,13 @@
 from flask import *
 import os
+from settings import *
+
 
 app = Flask(__name__)
 print("server start")
 
 
+# 테스트용 코드
 @app.route('/result', methods=['POST'])
 def call_judge(code=""):
     usr_src = "empty"
@@ -13,45 +16,51 @@ def call_judge(code=""):
     if request.method == 'POST':
         usr_src = request.form['code']
 
-        f_in = open('usr_code.cpp', 'w')
+        f_in = open(USR_CODE_PATH, 'w')
         f_in.write(usr_src)
         f_in.close()
 
         pid = os.fork()
         if pid == 0:
-            os.execl("/usr/local/bin/python3", "python3", "/app/judge.py")
+            os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
 
-        os.waitpid(pid, 0)
-        f_out = open('output.txt', 'r')
+        f_out = open(OUTPUT_PATH, 'r')
         result = "실행 결과 :\n" + f_out.read()
 
     return result
 
 
+# vscode와 통신하는 HTTP POST 메소드
 @app.route('/vscode', methods=['POST'])
 def call_judge_vscode(code=""):
     usr_src = "empty"
-    result = "empty"
+    result = None
 
     if request.method == 'POST':
         req = request.get_json()
         usr_src = req['code']
 
-        f_in = open('usr_code.cpp', 'w')
+        f_in = open(USR_CODE_PATH, 'w')
         f_in.write(usr_src)
         f_in.close()
 
         pid = os.fork()
         if pid == 0:
-            os.execl("/usr/local/bin/python3", "python3", "/app/judge.py")
+            os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
 
-        os.waitpid(pid, 0)
-        f_out = open('output.txt', 'r')
-        result = "result :\n" + f_out.read()
+        judge_info = os.waitpid(pid, 0)
+        exit_code = os.WEXITSTATUS(judge_info[1])
 
-        return jsonify(result)
+        if exit_code == 0:
+            f_out = open(OUTPUT_PATH, 'r')
+            result = "result :\n" + f_out.read()
 
-    return result
+        elif exit_code == 111:
+            result = "Compile Error!"
+        else:
+            result = "Runtime Error!"
+
+    return jsonify(result)
 
 
 @app.route('/')
