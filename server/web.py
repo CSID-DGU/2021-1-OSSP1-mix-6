@@ -7,7 +7,7 @@ app = Flask(__name__)
 print("server start")
 
 
-# Testing in Web
+# 테스트용 코드
 @app.route('/result', methods=['POST'])
 def call_judge(code=""):
     usr_src = "empty"
@@ -24,18 +24,17 @@ def call_judge(code=""):
         if pid == 0:
             os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
 
-        os.waitpid(pid, 0)
         f_out = open(OUTPUT_PATH, 'r')
         result = "실행 결과 :\n" + f_out.read()
 
     return result
 
 
-# HTTP POST method
+# vscode와 통신하는 HTTP POST 메소드
 @app.route('/vscode', methods=['POST'])
 def call_judge_vscode(code=""):
     usr_src = "empty"
-    result = "empty"
+    result = None
 
     if request.method == 'POST':
         req = request.get_json()
@@ -49,13 +48,19 @@ def call_judge_vscode(code=""):
         if pid == 0:
             os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
 
-        os.waitpid(pid, 0)
-        f_out = open(OUTPUT_PATH, 'r')
-        result = "result :\n" + f_out.read()
+        judge_info = os.waitpid(pid, 0)
+        exit_code = os.WEXITSTATUS(judge_info[1])
 
-        return jsonify(result)
+        if exit_code == 0:
+            f_out = open(OUTPUT_PATH, 'r')
+            result = "result :\n" + f_out.read()
 
-    return result
+        elif exit_code == 111:
+            result = "Compile Error!"
+        else:
+            result = "Runtime Error!"
+
+    return jsonify(result)
 
 
 @app.route('/')
