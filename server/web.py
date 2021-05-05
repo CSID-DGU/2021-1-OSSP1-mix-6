@@ -52,6 +52,7 @@ def call_judge_vscode(code=""):
         exit_code = os.WEXITSTATUS(judge_info[1])
 
         if exit_code == 0:
+            ############ 분석 결과 종합 ############
             # 단순 실행 결과
             # f_out = open(OUTPUT_PATH, 'r')
             # result += "result :\n" + f_out.read()
