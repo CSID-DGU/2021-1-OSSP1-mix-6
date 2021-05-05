@@ -28,6 +28,8 @@ else:
 
     if compile_error:
         sys.exit(111)
+        
+    ############ 분석 모듈 실행 부분 ############
 
     pid_judge_input = os.fork()
     if pid_judge_input == 0:
