@@ -6,6 +6,16 @@ from settings import *
 app = Flask(__name__)
 print("server start")
 
+@app.route('/complexity')
+def call_complexity():
+    pid = os.fork()
+    if pid == 0:
+        os.execl(PYTHON_PATH, "python3", "/app/complexity/test.py")
+    
+    f_out = open("/app/complexity/result.txt", 'r')
+    result = "복잡도" + f_out.read()
+
+    return result
 
 # 테스트용 코드
 @app.route('/result', methods=['POST'])
@@ -22,6 +32,7 @@ def call_judge(code=""):
 
         pid = os.fork()
         if pid == 0:
+            print(os.getcwd())
             os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
 
         f_out = open(OUTPUT_PATH, 'r')
