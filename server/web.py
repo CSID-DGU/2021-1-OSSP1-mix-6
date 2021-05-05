@@ -1,5 +1,6 @@
 from flask import *
 import os
+import shutil
 from settings import *
 
 
@@ -30,11 +31,14 @@ def call_judge(code=""):
         f_in.write(usr_src)
         f_in.close()
 
+        shutil.copy(USR_CODE_PATH,"/app/complexity/")
+
         pid = os.fork()
         if pid == 0:
             print(os.getcwd())
             os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
 
+        pid = os.waitpid
         f_out = open(OUTPUT_PATH, 'r')
         result = "실행 결과 :\n" + f_out.read()
 
