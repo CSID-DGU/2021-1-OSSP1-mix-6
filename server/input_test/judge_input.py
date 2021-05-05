@@ -1,5 +1,6 @@
 import os
 import sys
+sys.path.append(os.path.abspath('./'))
 from settings import *
 
 print("start input judge")
