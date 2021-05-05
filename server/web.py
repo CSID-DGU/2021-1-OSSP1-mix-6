@@ -13,6 +13,7 @@ def call_complexity():
     if pid == 0:
         os.execl(PYTHON_PATH, "python3", "/app/complexity/test.py")
     
+    os.wait()
     f_out = open("/app/complexity/result.txt", 'r')
     result = "복잡도" + f_out.read()
 
@@ -30,19 +31,36 @@ def call_judge(code=""):
         f_in = open(USR_CODE_PATH, 'w')
         f_in.write(usr_src)
         f_in.close()
-
         shutil.copy(USR_CODE_PATH,"/app/complexity/")
 
         pid = os.fork()
         if pid == 0:
-            print(os.getcwd())
+            os.execl(PYTHON_PATH, "python3", "/app/complexity/test.py")
+
+        complex_info = os.waitpid(pid, 0)
+        exit_code = os.WEXITSTATUS(complex_info[1])
+
+        if exit_code == 0:
+            f_out = open("/app/complexity/result.txt", 'r')
+            result = "복잡도" + f_out.read()
+
+        pid = os.fork()
+        if pid == 0:
             os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
 
-        pid = os.waitpid
-        f_out = open(OUTPUT_PATH, 'r')
-        result = "실행 결과 :\n" + f_out.read()
+        judge_info = os.waitpid(pid, 0)
+        exit_code = os.WEXITSTATUS(judge_info[1])
 
-    return result
+        if exit_code == 0:
+            f_out = open(OUTPUT_PATH, 'r')
+            result += "result :\n" + f_out.read()
+
+        elif exit_code == 111:
+            result = "Compile Error!"
+        else:
+            result = "Runtime Error!"
+
+    return jsonify(result)
 
 
 # vscode와 통신하는 HTTP POST 메소드
@@ -58,6 +76,23 @@ def call_judge_vscode(code=""):
         f_in = open(USR_CODE_PATH, 'w')
         f_in.write(usr_src)
         f_in.close()
+        shutil.copy(USR_CODE_PATH,"/app/complexity/")
+
+        pid = os.fork()
+        if pid == 0:
+            os.execl(PYTHON_PATH, "python3", "/app/complexity/test.py")
+
+        complex_info = os.waitpid(pid, 0)
+        exit_code = os.WEXITSTATUS(complex_info[1])
+
+        if exit_code == 0:
+            f_out = open("/app/complexity/result.txt", 'r')
+            result = f_out.read()
+
+        elif exit_code == 111:
+            result = "Error!"
+        else:
+            result = "Error!"
 
         pid = os.fork()
         if pid == 0:
@@ -68,7 +103,7 @@ def call_judge_vscode(code=""):
 
         if exit_code == 0:
             f_out = open(OUTPUT_PATH, 'r')
-            result = "result :\n" + f_out.read()
+            result += "result :\n" + f_out.read()
 
         elif exit_code == 111:
             result = "Compile Error!"
