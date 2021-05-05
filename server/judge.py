@@ -34,13 +34,13 @@ else:
     	# 입력 제어
     	os.execl(PYTHON_PATH, "python3", JUDGE_INPUT_PATH)
 
-    fd = os.fdopen(f_output, "w")
+    # fd = os.fdopen(f_output, "w")
 
     ## 텍스트 파일 내용 초기화
-    open(OUTPUT_PATH, 'w').close()
+    # open(OUTPUT_PATH, 'w').close()
 
-    os.dup2(fd.fileno(), sys.stdout.fileno())
-    os.close(fd.fileno())
-    os.execl(OBJ_FILE_PATH, OBJ_FILE_PATH)
+    # os.dup2(fd.fileno(), sys.stdout.fileno())
+    # os.close(fd.fileno())
+    # os.execl(OBJ_FILE_PATH, OBJ_FILE_PATH)
 
 

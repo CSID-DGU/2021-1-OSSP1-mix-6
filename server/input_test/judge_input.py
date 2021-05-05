@@ -29,7 +29,6 @@ for i in range(iter):
         os.dup2(fd_null.fileno(), sys.stdout.fileno())
         os.close(fd_null.fileno())
         '''
-        
         os.execl(OBJ_FILE_PATH, OBJ_FILE_PATH)
 
 for i in range(iter):
@@ -38,7 +37,8 @@ for i in range(iter):
     if exit_code != 0:
         error += 1
 
-error_result = "Test Success : " +  str(iter - error)+'/'+str(iter)
+error_result = "Input Test Success : " +  str(iter - error)+'/'+str(iter)
+print(error_result)
 f_out = open(INPUT_TEST_RESULT, 'w')
 f_out.write(error_result)
 f_out.close()

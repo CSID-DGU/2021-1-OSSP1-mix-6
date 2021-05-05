@@ -34,7 +34,7 @@ def call_judge(code=""):
 @app.route('/vscode', methods=['POST'])
 def call_judge_vscode(code=""):
     usr_src = "empty"
-    result = None
+    result = ""
 
     if request.method == 'POST':
         req = request.get_json()
@@ -53,8 +53,8 @@ def call_judge_vscode(code=""):
 
         if exit_code == 0:
             # 단순 실행 결과
-            f_out = open(OUTPUT_PATH, 'r')
-            result = "result :\n" + f_out.read()
+            # f_out = open(OUTPUT_PATH, 'r')
+            # result += "result :\n" + f_out.read()
             
             # 입력 제어 테스트 결과
             f_out = open(INPUT_TEST_RESULT, 'r')
