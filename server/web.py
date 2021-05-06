@@ -6,7 +6,6 @@ from settings import *
 app = Flask(__name__)
 print("server start")
 
-
 # 테스트용 코드
 @app.route('/result', methods=['POST'])
 def call_judge(code=""):
@@ -24,10 +23,19 @@ def call_judge(code=""):
         if pid == 0:
             os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
 
-        f_out = open(OUTPUT_PATH, 'r')
-        result = "실행 결과 :\n" + f_out.read()
+        judge_info = os.waitpid(pid, 0)
+        exit_code = os.WEXITSTATUS(judge_info[1])
 
-    return result
+        if exit_code == 0:
+            f_out = open(OUTPUT_PATH, 'r')
+            result += "result :\n" + f_out.read()
+
+        elif exit_code == 111:
+            result = "Compile Error!"
+        else:
+            result = "Runtime Error!"
+
+    return jsonify(result)
 
 
 # vscode와 통신하는 HTTP POST 메소드
@@ -60,6 +68,11 @@ def call_judge_vscode(code=""):
             # 입력 제어 테스트 결과
             f_out = open(INPUT_TEST_RESULT, 'r')
             result += ('\n' + f_out.read())
+            f_out.close()
+
+            f_out = open(COMPLEX_RESULT_PATH, 'r')
+            result += "\ncomplexity : \n" + f_out.read()
+            f_out.close()
 
         elif exit_code == 111:
             result = "Compile Error!"
