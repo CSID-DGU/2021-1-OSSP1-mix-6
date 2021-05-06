@@ -64,7 +64,7 @@ def call_judge_vscode(code=""):
             result += "result :\n" + f_out.read()
             f_out.close()
 
-            f_out = open("/app/complexity/result.txt", 'r')
+            f_out = open(COMPLEX_RESULT_PATH, 'r')
             result += "\ncomplexity : \n" + f_out.read()
             f_out.close()
 
