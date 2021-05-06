@@ -1793,5 +1793,5 @@ void yyfree (void * ptr )
 int main(){
     int a = yylex();
     FILE *f = fopen("result.txt","w");
-    fprintf(f,"\ncomplexity : %d\n",count + 1);
+    fprintf(f,"%d\n",count + 1);
 } 

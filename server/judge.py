@@ -1,5 +1,6 @@
 import os
 import sys
+import shutil
 from settings import *
 
 compile_error = False
@@ -7,6 +8,12 @@ runtime_error = False
 
 f_output = os.open(OUTPUT_PATH, os.O_RDWR | os.O_CREAT)
 f_log = os.open(COMPILE_LOG_PATH, os.O_RDWR | os.O_CREAT)
+shutil.copy(USR_CODE_PATH,"/app/complexity/")
+
+pid_complex = os.fork()
+
+if pid_complex == 0:
+    os.execl(PYTHON_PATH, "python3", "/app/complexity/test.py")
 
 pid = os.fork()
 if pid == 0:
