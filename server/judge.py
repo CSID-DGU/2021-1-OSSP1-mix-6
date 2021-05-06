@@ -35,12 +35,19 @@ else:
 
     if compile_error:
         sys.exit(111)
+        
+    ############ 분석 모듈 실행 부분 ############
 
-    fd = os.fdopen(f_output, "w")
+    pid_judge_input = os.fork()
+    if pid_judge_input == 0:
+    	# 입력 제어
+    	os.execl(PYTHON_PATH, "python3", JUDGE_INPUT_PATH)
+
+    # fd = os.fdopen(f_output, "w")
 
     ## 텍스트 파일 내용 초기화
-    open(OUTPUT_PATH, 'w').close()
+    # open(OUTPUT_PATH, 'w').close()
 
-    os.dup2(fd.fileno(), sys.stdout.fileno())
-    os.close(fd.fileno())
-    os.execl(OBJ_FILE_PATH, OBJ_FILE_PATH)
+    # os.dup2(fd.fileno(), sys.stdout.fileno())
+    # os.close(fd.fileno())
+    # os.execl(OBJ_FILE_PATH, OBJ_FILE_PATH)

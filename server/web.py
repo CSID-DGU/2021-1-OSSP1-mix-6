@@ -60,8 +60,14 @@ def call_judge_vscode(code=""):
         exit_code = os.WEXITSTATUS(judge_info[1])
 
         if exit_code == 0:
-            f_out = open(OUTPUT_PATH, 'r')
-            result += "result :\n" + f_out.read()
+            ############ 분석 결과 종합 ############
+            # 단순 실행 결과
+            # f_out = open(OUTPUT_PATH, 'r')
+            # result += "result :\n" + f_out.read()
+            
+            # 입력 제어 테스트 결과
+            f_out = open(INPUT_TEST_RESULT, 'r')
+            result += ('\n' + f_out.read())
             f_out.close()
 
             f_out = open(COMPLEX_RESULT_PATH, 'r')
