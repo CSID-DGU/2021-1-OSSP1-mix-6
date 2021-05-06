@@ -41,7 +41,6 @@ else:
 
     # 복잡성 분석
     pid_complex = os.fork()
-
     if pid_complex == 0:
         os.execl(PYTHON_PATH, "python3", SCANNER_PATH)
     os.waitpid(pid_complex, 0)

@@ -14,7 +14,7 @@ function get_result(_code) {
     return __awaiter(this, void 0, void 0, function* () {
         var result;
         const fetch = require("node-fetch");
-        yield fetch("http://127.0.0.1:7878/vscode", {
+        yield fetch("http://127.0.0.1:8888/vscode", {
             method: "POST",
             mode: "cors",
             headers: {
