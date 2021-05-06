@@ -19,5 +19,5 @@ eol \n
 int main(){
     int a = yylex();
     FILE *f = fopen("result.txt","w");
-    fprintf(f,"\ncomplexity : %d\n",count);
+    fprintf(f,"\ncomplexity : %d\n",count + 1);
 } 
