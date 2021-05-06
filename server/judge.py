@@ -10,11 +10,6 @@ f_output = os.open(OUTPUT_PATH, os.O_RDWR | os.O_CREAT)
 f_log = os.open(COMPILE_LOG_PATH, os.O_RDWR | os.O_CREAT)
 shutil.copy(USR_CODE_PATH,COMPLEXITY_PATH)
 
-pid_complex = os.fork()
-
-if pid_complex == 0:
-    os.execl(PYTHON_PATH, "python3", SCANNER_PATH)
-
 pid = os.fork()
 if pid == 0:
     # C++ 코드 컴파일 단계
@@ -38,10 +33,18 @@ else:
         
     ############ 분석 모듈 실행 부분 ############
 
+    # 입력 제어
     pid_judge_input = os.fork()
     if pid_judge_input == 0:
-    	# 입력 제어
     	os.execl(PYTHON_PATH, "python3", JUDGE_INPUT_PATH)
+    os.waitpid(pid_judge_input, 0)
+
+    # 복잡성 분석
+    pid_complex = os.fork()
+
+    if pid_complex == 0:
+        os.execl(PYTHON_PATH, "python3", SCANNER_PATH)
+    os.waitpid(pid_complex, 0)
 
     # fd = os.fdopen(f_output, "w")
 
