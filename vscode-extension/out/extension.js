@@ -12,6 +12,8 @@ function activate(context) {
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
     console.log('Congratulations, your extension "vscode-extension" is now active!');
+    var settings = vscode.workspace.getConfiguration('judge');
+    console.log(settings);
     var provider = new rv.TreeDataProvider;
     vscode.window.registerTreeDataProvider('view1', provider);
     // The command has been defined in the package.json file

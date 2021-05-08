@@ -12,6 +12,10 @@ export function activate(context: vscode.ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "vscode-extension" is now active!');
 
+	var settings = vscode.workspace.getConfiguration('judge');
+	console.log(settings);
+	
+
 	var provider = new rv.TreeDataProvider;
 	vscode.window.registerTreeDataProvider('view1', provider);
 
@@ -21,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let disposable = vscode.commands.registerCommand('vscode-extension.judge', function () {
 		// The code you place here will be executed every time your command is executed
+
 		const activeEditor = vscode.window.activeTextEditor;
 		var usr_code = activeEditor?.document.getText() || '';
 
