@@ -30,7 +30,8 @@ export function get_settings(settings: any) {
         complexityAnalysisEnable : settings.complexityAnalysis.enable,
         inputAnalysisEnable : settings.inputAnalysis.enable,
         duplicationAnalysisEnable : settings.duplicationAnalysis.enable,
-        parameterAnalysisEnable : settings.parameterAnalysis.enable
+        parameterAnalysisEnable : settings.parameterAnalysis.enable,
+        dependenceAnalysisEnable : settings.dependenceAnalysis.enable
     };
 
     return ret;

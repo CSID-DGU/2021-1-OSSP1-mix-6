@@ -40,7 +40,8 @@ function get_settings(settings) {
         complexityAnalysisEnable: settings.complexityAnalysis.enable,
         inputAnalysisEnable: settings.inputAnalysis.enable,
         duplicationAnalysisEnable: settings.duplicationAnalysis.enable,
-        parameterAnalysisEnable: settings.parameterAnalysis.enable
+        parameterAnalysisEnable: settings.parameterAnalysis.enable,
+        dependenceAnalysisEnable: settings.dependenceAnalysis.enable
     };
     return ret;
 }
