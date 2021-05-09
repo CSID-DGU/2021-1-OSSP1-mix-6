@@ -12,11 +12,6 @@ function activate(context) {
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
     console.log('Congratulations, your extension "vscode-extension" is now active!');
-    var settings = vscode.workspace.getConfiguration('judge');
-    console.log(settings);
-    console.log(settings.namingAnalysis.enable);
-    console.log(settings.complexityAnalysis.enable);
-    console.log(settings.inputAnalysis.enable);
     var provider = new rv.TreeDataProvider;
     vscode.window.registerTreeDataProvider('view1', provider);
     // The command has been defined in the package.json file
@@ -26,10 +21,12 @@ function activate(context) {
         // The code you place here will be executed every time your command is executed
         const activeEditor = vscode.window.activeTextEditor;
         var usr_code = (activeEditor === null || activeEditor === void 0 ? void 0 : activeEditor.document.getText()) || '';
+        var settings_raw = vscode.workspace.getConfiguration('judge');
+        var settings = conn.get_settings(settings_raw);
         console.log("your code : ");
         console.log(usr_code);
         // provider.addTreeItem(new rv.TreeItem('Something'));
-        var response = conn.get_result(usr_code);
+        var response = conn.get_result(usr_code, settings);
         console.log(response);
         // Display a message box to the user
         vscode.window.showInformationMessage('Judge Start');

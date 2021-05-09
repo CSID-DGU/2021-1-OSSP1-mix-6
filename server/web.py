@@ -47,6 +47,8 @@ def call_judge_vscode(code=""):
     if request.method == 'POST':
         req = request.get_json()
         usr_src = req['code']
+        usr_settings = req['settings']
+        print(usr_settings)
 
         f_in = open(USR_CODE_PATH, 'w')
         f_in.write(usr_src)
