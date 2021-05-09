@@ -14,6 +14,9 @@ function activate(context) {
     console.log('Congratulations, your extension "vscode-extension" is now active!');
     var settings = vscode.workspace.getConfiguration('judge');
     console.log(settings);
+    console.log(settings.namingAnalysis.enable);
+    console.log(settings.complexityAnalysis.enable);
+    console.log(settings.inputAnalysis.enable);
     var provider = new rv.TreeDataProvider;
     vscode.window.registerTreeDataProvider('view1', provider);
     // The command has been defined in the package.json file

@@ -14,6 +14,10 @@ export function activate(context: vscode.ExtensionContext) {
 
 	var settings = vscode.workspace.getConfiguration('judge');
 	console.log(settings);
+	console.log(settings.namingAnalysis.enable);
+	console.log(settings.complexityAnalysis.enable);
+	console.log(settings.inputAnalysis.enable);
+	
 	
 
 	var provider = new rv.TreeDataProvider;
