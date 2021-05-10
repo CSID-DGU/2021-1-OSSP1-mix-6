@@ -45,6 +45,7 @@ else:
         os.execl(PYTHON_PATH, "python3", SCANNER_PATH)
     os.waitpid(pid_complex, 0)
 
+    # 단순 실행 파트
     # fd = os.fdopen(f_output, "w")
 
     ## 텍스트 파일 내용 초기화

@@ -44,6 +44,39 @@
 					"command": "vscode-extension.judge"
 				}
 			]
+		},
+		"configuration": {
+			"title": "Judge",
+			"properties": {
+				"judge.namingAnalysis.enable" : {
+					"type":"boolean",
+					"default":true
+				},
+				"judge.namingAnalysis.addNamingRule" : {
+					"type":"array",
+					"default":[]
+				},
+				"judge.inputAnalysis.enable" : {
+					"type":"boolean",
+					"default":true
+				},
+				"judge.dependenceAnalysis.enable" : {
+					"type":"boolean",
+					"default":true
+				},
+				"judge.parameterAnalysis.enable" : {
+					"type":"boolean",
+					"default":true
+				},
+				"judge.duplicationAnalysis.enable" : {
+					"type":"boolean",
+					"default":true
+				},
+				"judge.complexityAnalysis.enable" : {
+					"type":"boolean",
+					"default":true
+				}
+			}
 		}
 	},
 	"scripts": {

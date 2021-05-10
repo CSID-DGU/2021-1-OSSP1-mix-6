@@ -47,6 +47,9 @@ def call_judge_vscode(code=""):
     if request.method == 'POST':
         req = request.get_json()
         usr_src = req['code']
+        usr_settings = req['settings']
+
+        print(usr_settings)
 
         f_in = open(USR_CODE_PATH, 'w')
         f_in.write(usr_src)
@@ -64,16 +67,18 @@ def call_judge_vscode(code=""):
             # 단순 실행 결과
             # f_out = open(OUTPUT_PATH, 'r')
             # result += "result :\n" + f_out.read()
-            
+
             # 입력 제어 테스트 결과
-            f_out = open(INPUT_TEST_RESULT, 'r')
-            result += ('\n' + f_out.read())
-            f_out.close()
+            if usr_settings['inputAnalysisEnable']:
+                f_out = open(INPUT_TEST_RESULT, 'r')
+                result += ('\n' + f_out.read())
+                f_out.close()
 
             # 복잡성 분석 테스트 결과
-            f_out = open(COMPLEX_RESULT_PATH, 'r')
-            result += "\ncomplexity : \n" + f_out.read()
-            f_out.close()
+            if usr_settings['complexityAnalysisEnable']:
+                f_out = open(COMPLEX_RESULT_PATH, 'r')
+                result += "\ncomplexity : " + f_out.read()
+                f_out.close()
 
         elif exit_code == 111:
             result = "Compile Error!"
