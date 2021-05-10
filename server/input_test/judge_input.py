@@ -16,19 +16,18 @@ for i in range(iter):
         fd = os.fdopen(f_in, "w")
     	
         stdin_origin = sys.stdin
-        print("Input"+str(i)+" : " + open(filepath, 'r').read())
+        # print("Input"+str(i)+" : " + open(filepath, 'r').read())
         # 텍스트 파일을 입력으로
         os.dup2(fd.fileno(), sys.stdin.fileno())
         os.close(fd.fileno())
         
         # 출력 음소거
-        '''
         stdout_origin = sys.stdout
         devnull = os.open(os.devnull, os.O_WRONLY)
         fd_null = os.fdopen(devnull, "w")
         os.dup2(fd_null.fileno(), sys.stdout.fileno())
         os.close(fd_null.fileno())
-        '''
+
         os.execl(OBJ_FILE_PATH, OBJ_FILE_PATH)
 
 for i in range(iter):
@@ -38,7 +37,7 @@ for i in range(iter):
         error += 1
 
 error_result = "Input Test Success : " +  str(iter - error)+'/'+str(iter)
-print(error_result)
+# print(error_result)
 f_out = open(INPUT_TEST_RESULT, 'w')
 f_out.write(error_result)
 f_out.close()
