@@ -1,7 +1,7 @@
 import sys
 import clang.cindex
 
-clang.cindex.Config.set_library_file("/usr/lib/llvm-7/lib/libclang-11.so.1")
+clang.cindex.Config.set_library_file("/usr/lib/llvm-7/lib/libclang-7.so.1")
 
 def print_decl(node):
     if (node.kind == clang.cindex.CursorKind.FUNCTION_DECL):
