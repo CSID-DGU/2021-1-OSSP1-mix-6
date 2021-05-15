@@ -18,7 +18,7 @@ function get_result(_code, _settings) {
         var sending_obj = Object.assign(usr_code, usr_settings);
         console.log(sending_obj);
         const fetch = require("node-fetch");
-        yield fetch("http://192.168.209.133:5000/vscode", {
+        yield fetch("http://127.0.0.1:8888/vscode", {
             method: "POST",
             mode: "cors",
             headers: {
