@@ -45,6 +45,10 @@ else:
         os.execl(PYTHON_PATH, "python3", SCANNER_PATH)
     os.waitpid(pid_complex, 0)
 
+    # ast덤프
+    os.chdir(AST_PATH)
+    os.system("python3 get_ast.py")
+
     # 단순 실행 파트
     # fd = os.fdopen(f_output, "w")
 

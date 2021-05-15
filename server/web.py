@@ -79,6 +79,11 @@ def call_judge_vscode(code=""):
                 f_out = open(COMPLEX_RESULT_PATH, 'r')
                 result += "\ncomplexity : " + f_out.read()
                 f_out.close()
+            
+            # ast 덤프 결과
+            f_out = open(AST_PARAM_PATH, 'r')
+            result += "\nAST : " + f_out.read()
+            f_out.close()
                 
         elif exit_code == 111:
             result = "Compile Error!"

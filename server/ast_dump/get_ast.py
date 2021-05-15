@@ -1,4 +1,4 @@
-import ast_dump
+from ast_dump import *
 
-param = ast_dump.parameter("main.cpp")
+param = parameter("../usr_code.cpp")
 param.print_json()
