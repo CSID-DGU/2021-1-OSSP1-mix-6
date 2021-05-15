@@ -51,6 +51,8 @@ def call_judge_vscode(code=""):
         usr_src = req['code']
         usr_settings = req['settings']
 
+        print(usr_settings)
+
         f_in = open(USR_CODE_PATH, 'w')
         f_in.write(usr_src)
         f_in.close()
