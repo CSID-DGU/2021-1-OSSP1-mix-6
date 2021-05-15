@@ -6,7 +6,6 @@ export async function get_result(_code: string, _settings: object) {
 
     console.log(sending_obj);
     
-
     const fetch = require("node-fetch");
     await fetch("http://127.0.0.1:8888/vscode", {
         method: "POST",
