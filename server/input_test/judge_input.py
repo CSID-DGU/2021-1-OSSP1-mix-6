@@ -1,12 +1,14 @@
 import os
+import signal
 import sys
 import json
-
 sys.path.append(os.path.abspath('./'))
 from settings import *
 
 total = 0
 error = 0
+current_pid = 0
+sig_triggered = False
 
 input_num = 5
 input_string = 5
@@ -16,12 +18,19 @@ timeout = usr_settings['inputTimeout']
 input_type = usr_settings['inputType']
 
 
+def timer_handler(signum, frame):
+    global sig_triggered
+    sig_triggered = True
+    os.kill(current_pid, signal.SIGINT)
+
+
 def test_input(type_str, iter):
-    global total, error
+    global total, error, current_pid, sig_triggered
     pid_list = []
 
     for i in range(iter):
         total += 1
+        signal.signal(signal.SIGALRM, timer_handler)
         pid = os.fork()
         pid_list.append(pid)
 
@@ -46,10 +55,17 @@ def test_input(type_str, iter):
             os.execl(OBJ_FILE_PATH, OBJ_FILE_PATH)
 
     for i in range(iter):
-        info = os.waitpid(pid_list[i], 0)
+        current_pid = pid_list[i]
+        signal.alarm(timeout)
+        info = os.waitpid(current_pid, 0)
         exit_code = os.WEXITSTATUS(info[1])
-        if exit_code != 0:
+
+        if sig_triggered:
             error += 1
+            sig_triggered = False
+        else:
+            if exit_code != 0:
+                error += 1
 
 
 if input_type == 'all':

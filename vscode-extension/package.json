@@ -62,7 +62,8 @@
 				},
 				"judge.inputAnalysis.timeout" : {
 					"type":"number",
-					"default":1
+					"default":1,
+					"description":"Specify the number of seconds of timeout to be considered a failure"
 				},
 				"judge.inputAnalysis.type" : {
 					"type":"string",
