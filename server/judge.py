@@ -1,14 +1,16 @@
 import os
 import sys
 import shutil
+import json
 from settings import *
 
 compile_error = False
 runtime_error = False
+usr_settings = json.loads(sys.argv[1])
 
 f_output = os.open(OUTPUT_PATH, os.O_RDWR | os.O_CREAT)
 f_log = os.open(COMPILE_LOG_PATH, os.O_RDWR | os.O_CREAT)
-shutil.copy(USR_CODE_PATH,COMPLEXITY_PATH)
+shutil.copy(USR_CODE_PATH, COMPLEXITY_PATH)
 
 pid = os.fork()
 if pid == 0:
@@ -30,13 +32,14 @@ else:
 
     if compile_error:
         sys.exit(111)
-        
+
     ############ 분석 모듈 실행 부분 ############
+    # 사용자 설정 필요시 매개변수로 sys.argv[1] 전달
 
     # 입력 제어
     pid_judge_input = os.fork()
     if pid_judge_input == 0:
-    	os.execl(PYTHON_PATH, "python3", JUDGE_INPUT_PATH)
+        os.execl(PYTHON_PATH, "python3", JUDGE_INPUT_PATH, sys.argv[1])
     os.waitpid(pid_judge_input, 0)
 
     # 복잡성 분석

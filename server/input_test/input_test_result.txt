@@ -1,1 +1,1 @@
-Test Success : 3/3
+Input Test Success : 10/10

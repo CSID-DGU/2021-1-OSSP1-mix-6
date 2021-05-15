@@ -60,6 +60,15 @@
 					"type":"boolean",
 					"default":true
 				},
+				"judge.inputAnalysis.timeout" : {
+					"type":"number",
+					"default":1
+				},
+				"judge.inputAnalysis.type" : {
+					"type":"string",
+					"enum": ["all", "string", "number"],
+					"default":"all"
+				},
 				"judge.dependenceAnalysis.enable" : {
 					"type":"boolean",
 					"default":true

@@ -39,6 +39,8 @@ function get_settings(settings) {
         namingAnalysisEnable: settings.namingAnalysis.enable,
         complexityAnalysisEnable: settings.complexityAnalysis.enable,
         inputAnalysisEnable: settings.inputAnalysis.enable,
+        inputTimeout: settings.inputAnalysis.timeout,
+        inputType: settings.inputAnalysis.type,
         duplicationAnalysisEnable: settings.duplicationAnalysis.enable,
         parameterAnalysisEnable: settings.parameterAnalysis.enable,
         dependenceAnalysisEnable: settings.dependenceAnalysis.enable
