@@ -1,3 +1,5 @@
+import json
+
 from flask import *
 import os
 from settings import *
@@ -49,15 +51,13 @@ def call_judge_vscode(code=""):
         usr_src = req['code']
         usr_settings = req['settings']
 
-        print(usr_settings)
-
         f_in = open(USR_CODE_PATH, 'w')
         f_in.write(usr_src)
         f_in.close()
 
         pid = os.fork()
         if pid == 0:
-            os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
+            os.execl(PYTHON_PATH, "python3", JUDGE_PATH, str(json.dumps(usr_settings)))
 
         judge_info = os.waitpid(pid, 0)
         exit_code = os.WEXITSTATUS(judge_info[1])
