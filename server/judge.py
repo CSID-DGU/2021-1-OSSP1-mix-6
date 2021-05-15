@@ -45,13 +45,6 @@ else:
         os.execl(PYTHON_PATH, "python3", SCANNER_PATH)
     os.waitpid(pid_complex, 0)
 
-    # AST 생성
-    pid_ast = os.fork()
-    if pid_ast == 0:
-        os.chdir(HOME_PATH)
-        os.system("clang++ -cc1 -ast-dump usr_code.cpp > ast.txt")
-    os.waitpid(pid_ast, 0)
-
     # 단순 실행 파트
     # fd = os.fdopen(f_output, "w")
 
