@@ -5,8 +5,8 @@ void sample1(char *abc, char bcd, int cde){}
 
 void sample2(char *abc, char bcd, int cde){}
 
-void sample23(char *abc, char bcd, int cde){}
-
+void sample3(char *abc, char bcd, int cde){}
+// int a=1;
 int main(){
     int N = 26;
     int first, second, newN, result=1;

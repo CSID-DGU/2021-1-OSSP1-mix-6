@@ -1,0 +1,30 @@
+{
+	"sample1": {
+		"type": "void (char *, char, int)",
+		"parameter": {
+			"char *": "abc",
+			"char": "bcd",
+			"int": "cde"
+		}
+	},
+	"sample2": {
+		"type": "void (char *, char, int)",
+		"parameter": {
+			"char *": "abc",
+			"char": "bcd",
+			"int": "cde"
+		}
+	},
+	"sample3": {
+		"type": "void (char *, char, int)",
+		"parameter": {
+			"char *": "abc",
+			"char": "bcd",
+			"int": "cde"
+		}
+	},
+	"main": {
+		"type": "int ()",
+		"parameter": {}
+	}
+}

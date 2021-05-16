@@ -1,0 +1,78 @@
+{
+	"decl1": {
+		"type": "",
+		"name": ""
+	},
+	"decl2": {
+		"type": "void (char *, char, int)",
+		"name": "sample1"
+	},
+	"decl3": {
+		"type": "char *",
+		"name": "abc"
+	},
+	"decl4": {
+		"type": "char",
+		"name": "bcd"
+	},
+	"decl5": {
+		"type": "int",
+		"name": "cde"
+	},
+	"decl6": {
+		"type": "void (char *, char, int)",
+		"name": "sample2"
+	},
+	"decl7": {
+		"type": "char *",
+		"name": "abc"
+	},
+	"decl8": {
+		"type": "char",
+		"name": "bcd"
+	},
+	"decl9": {
+		"type": "int",
+		"name": "cde"
+	},
+	"decl10": {
+		"type": "void (char *, char, int)",
+		"name": "sample3"
+	},
+	"decl11": {
+		"type": "char *",
+		"name": "abc"
+	},
+	"decl12": {
+		"type": "char",
+		"name": "bcd"
+	},
+	"decl13": {
+		"type": "int",
+		"name": "cde"
+	},
+	"decl14": {
+		"type": "int ()",
+		"name": "main"
+	},
+	"decl15": {
+		"type": "int",
+		"name": "N"
+	},
+	"decl16": {
+		"type": "int",
+		"name": "first"
+	},
+	"decl17": {
+		"type": "int",
+		"name": "second"
+	},
+	"decl18": {
+		"type": "int",
+		"name": "newN"
+	},
+	"decl19": {
+		"type": "int",
+		"name": "result"
+	}
+}
