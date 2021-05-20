@@ -17,7 +17,7 @@
 ------
 * self.func : 함수명
 * self.data : 해당 함수의 파라미터들을 저장할 딕셔너리
-* path의 파일을 파싱하여 Transration Unit형식으로 반환 초기 tu.cursor는 루트노드
+* path의 파일을 파싱하여 Transration Unit형식으로 반환, 초기 tu.cursor는 루트노드
 ```python
 def __init__(self,path):
         self.path = path
