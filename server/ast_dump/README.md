@@ -5,7 +5,7 @@
 1. 리눅스 환경에서 진행
 
 ```
-    $ pip install clan
+    $ pip install clang
     $ pip install libclang
     $ sudo apt-get llvm-11
 ```
