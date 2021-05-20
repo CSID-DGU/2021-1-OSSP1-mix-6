@@ -8,4 +8,4 @@ param.print_json()
 decl = declaration(file_path)
 decl.print_json()
 
-tree = ast(file_path)
+# tree = ast(file_path)
