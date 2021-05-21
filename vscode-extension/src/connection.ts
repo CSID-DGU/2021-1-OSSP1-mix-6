@@ -7,7 +7,7 @@ export async function get_result(_code: string, _settings: object) {
     console.log(sending_obj);
     
     const fetch = require("node-fetch");
-    await fetch("http://127.0.0.1:8888/vscode", {
+    await fetch("http://172.26.224.170:5000/vscode", {
         method: "POST",
         mode: "cors",
         headers: {

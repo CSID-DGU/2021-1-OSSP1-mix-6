@@ -1,5 +1,3 @@
-import json
-
 from flask import *
 import os
 from settings import *
@@ -59,7 +57,7 @@ def call_judge_vscode(code=""):
 
         pid = os.fork()
         if pid == 0:
-            os.execl(PYTHON_PATH, "python3", JUDGE_PATH, str(json.dumps(usr_settings)))
+            os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
 
         judge_info = os.waitpid(pid, 0)
         exit_code = os.WEXITSTATUS(judge_info[1])
@@ -81,7 +79,12 @@ def call_judge_vscode(code=""):
                 f_out = open(COMPLEX_RESULT_PATH, 'r')
                 result += "\ncomplexity : " + f_out.read()
                 f_out.close()
-
+            
+            # 의존성 분석 테스트 결과
+            f_out = open(DEPENDENCY_RESULT_PATH, 'r')
+            result += "\ndependency : " + f_out.read()
+            f_out.close()
+                
         elif exit_code == 111:
             result = "Compile Error!"
         else:

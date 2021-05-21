@@ -1,1 +1,3 @@
 Flask
+clang
+libclang
