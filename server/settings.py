@@ -1,6 +1,6 @@
-TEST_PATH = "/home/dw/server/"
-HOME_PATH = TEST_PATH
-# HOME_PATH = "/app/"
+# TEST_PATH = "/home/dw/server/"
+# HOME_PATH = TEST_PATH
+HOME_PATH = "/app/"
 
 INPUT_TEST_PATH = HOME_PATH + "input_test/"
 
@@ -21,9 +21,9 @@ SCANNER_PATH = COMPLEXITY_PATH + "complexity.py"
 INPUT_DIR_PATH = HOME_PATH + "input_test/input/"
 OUTPUT_PATH = HOME_PATH + "output.txt"
 
-DEPENDENCY_PATH = HOME_PATH + "dependency/"
-DEPENDENCY_JUDGE_PATH = DEPENDENCY_PATH + "judge_dependency.py"
-DEPENDENCY_RESULT_PATH = DEPENDENCY_PATH + "result.json"
+COUPLING_PATH = HOME_PATH + "coupling/"
+COUPLING_JUDGE_PATH = COUPLING_PATH + "judge_coupling.py"
+COUPLING_RESULT_PATH = COUPLING_PATH + "coupling_result.txt"
 
 AST_PATH = HOME_PATH + "ast_dump/"
 AST_GET_PATH = AST_PATH + "get_ast.py"

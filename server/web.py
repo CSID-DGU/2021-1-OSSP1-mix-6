@@ -80,9 +80,9 @@ def call_judge_vscode(code=""):
                 result += "\ncomplexity : " + f_out.read()
                 f_out.close()
             
-            # 의존성 분석 테스트 결과
-            f_out = open(DEPENDENCY_RESULT_PATH, 'r')
-            result += "\ndependency : " + f_out.read()
+            # 결합도 분석 테스트 결과
+            f_out = open(COUPLING_RESULT_PATH, 'r')
+            result += "\n" + f_out.read()
             f_out.close()
                 
         elif exit_code == 111:

@@ -1,0 +1,2 @@
+Coupling Score: 6/7
+High Coupling Functions : f6, 
