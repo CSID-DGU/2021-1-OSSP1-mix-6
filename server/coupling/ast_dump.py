@@ -1,13 +1,15 @@
+from clang import cindex
 import os
 import sys
 import json
-from clang import cindex
+
+sys.path.append(os.path.abspath('./'))
+from settings import *
+
 # TEST_PATH = "/home/dw/server/"
 # HOME_PATH = TEST_PATH
-HOME_PATH = "/app/"
-sys.path.append(HOME_PATH)
-
-from settings import *
+# HOME_PATH = "/app/"
+# sys.path.append(HOME_PATH)
 
 
 # libclang 파일 경로 바인딩
