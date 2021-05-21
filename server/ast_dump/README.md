@@ -7,7 +7,7 @@
 ```
     $ pip install clang
     $ pip install libclang
-    $ sudo apt-get llvm-11
+    $ sudo apt-get install llvm-11
 ```
 2. ast_dump.py 에서 로컬 디버깅 경로 코드를 알맞게 변경
 3. 도커 빌드 시에는 로컬 디버깅 경로를 주석 처리하고 도커 빌드 경로 주석 제거
