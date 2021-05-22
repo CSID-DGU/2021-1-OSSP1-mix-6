@@ -1,10 +1,16 @@
-# TEST_PATH = "/home/dw/server/"
+TEST_PATH = "/home/dw/server/"
 # HOME_PATH = TEST_PATH
 HOME_PATH = "/app/"
 
 INPUT_TEST_PATH = HOME_PATH + "input_test/"
 
+
+PYTHON_TEST_PATH = "/usr/bin/python3"
+# PYTHON_PATH = PYTHON_TEST_PATH
+
+# 도커 사용시 파이썬 경로
 PYTHON_PATH = "/usr/local/bin/python3"
+
 GPP_PATH = "/usr/bin/g++"
 
 JUDGE_PATH = HOME_PATH + "judge.py"
@@ -22,8 +28,8 @@ COMPLEX_RESULT_PATH = COMPLEXITY_PATH + "result.txt"
 INPUT_DIR_PATH = HOME_PATH + "input_test/input/"
 OUTPUT_PATH = HOME_PATH + "output.txt"
 
-COUPLING_PATH = HOME_PATH + "coupling/"
-COUPLING_JUDGE_PATH = COUPLING_PATH + "judge_coupling.py"
-COUPLING_RESULT_PATH = COUPLING_PATH + "coupling_result.txt"
+DEPENDENCY_PATH = HOME_PATH + "dependency/"
+DEPENDENCY_JUDGE_PATH = DEPENDENCY_PATH + "judge_dependency.py"
+DEPENDENCY_RESULT_PATH = DEPENDENCY_PATH + "dependency_result.txt"
 
 INPUT_TEST_RESULT = INPUT_TEST_PATH + "input_test_result.txt"
