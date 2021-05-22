@@ -1,5 +1,5 @@
 export async function get_result(_code: string, _settings: object) {
-    var result;
+    var result = "";
     var usr_code = { code : _code};
     var usr_settings = {settings : _settings}
     var sending_obj = Object.assign(usr_code, usr_settings)
@@ -18,6 +18,8 @@ export async function get_result(_code: string, _settings: object) {
     })
         .then((res : any) => res.json())
         .then((res : any) => {
+            result = JSON.stringify(res);
+            console.log(result); // for test
             console.log(res)
         });
 

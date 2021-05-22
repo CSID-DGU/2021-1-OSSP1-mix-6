@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.get_settings = exports.get_result = void 0;
 function get_result(_code, _settings) {
     return __awaiter(this, void 0, void 0, function* () {
-        var result;
+        var result = "";
         var usr_code = { code: _code };
         var usr_settings = { settings: _settings };
         var sending_obj = Object.assign(usr_code, usr_settings);
@@ -28,6 +28,8 @@ function get_result(_code, _settings) {
         })
             .then((res) => res.json())
             .then((res) => {
+            result = JSON.stringify(res);
+            console.log(result); // for test
             console.log(res);
         });
         return result;
