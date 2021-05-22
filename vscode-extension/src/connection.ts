@@ -19,7 +19,6 @@ export async function get_result(_code: string, _settings: object) {
         .then((res : any) => res.json())
         .then((res : any) => {
             result = JSON.stringify(res);
-            console.log(result); // for test
             console.log(res)
         });
 
