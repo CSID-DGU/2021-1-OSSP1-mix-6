@@ -48,6 +48,13 @@ else:
         os.execl(PYTHON_PATH, "python3", SCANNER_PATH)
     os.waitpid(pid_complex, 0)
 
+    # 의존성 분석
+    pid_complex = os.fork()
+    if pid_complex == 0:
+        os.chdir(DEPENDENCY_PATH)
+        os.execl(PYTHON_PATH, "python3", DEPENDENCY_JUDGE_PATH)
+    os.waitpid(pid_complex, 0)
+
     # 단순 실행 파트
     # fd = os.fdopen(f_output, "w")
 

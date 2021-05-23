@@ -1,0 +1,2 @@
+Dependecny Score: 7/9
+High Coupling Functions : f6, f7, 
