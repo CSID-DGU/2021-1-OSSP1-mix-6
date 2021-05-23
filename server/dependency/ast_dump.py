@@ -2,7 +2,9 @@ import os
 import sys
 import json
 from clang import cindex
+sys.path.append(os.path.abspath('./'))
 from settings import *
+
 
 
 
