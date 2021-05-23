@@ -458,9 +458,11 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "complexity.l"
 #line 2 "complexity.l"
-unsigned count=0;
-#line 463 "lex.yy.c"
-#line 464 "lex.yy.c"
+#define _USE_MATH_DEFINES
+#include <math.h>
+float count=0;
+#line 465 "lex.yy.c"
+#line 466 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -677,9 +679,9 @@ YY_DECL
 		}
 
 	{
-#line 8 "complexity.l"
+#line 10 "complexity.l"
 
-#line 683 "lex.yy.c"
+#line 685 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -738,51 +740,51 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "complexity.l"
+#line 11 "complexity.l"
 {count++;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 10 "complexity.l"
+#line 12 "complexity.l"
 {count++;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 11 "complexity.l"
+#line 13 "complexity.l"
 {count++;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 12 "complexity.l"
+#line 14 "complexity.l"
 {count++;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 13 "complexity.l"
+#line 15 "complexity.l"
 {count++;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 14 "complexity.l"
+#line 16 "complexity.l"
 {count++;}
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 15 "complexity.l"
+#line 17 "complexity.l"
 ;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 16 "complexity.l"
+#line 18 "complexity.l"
 ;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 17 "complexity.l"
+#line 19 "complexity.l"
 ECHO;
 	YY_BREAK
-#line 786 "lex.yy.c"
+#line 788 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1787,11 +1789,16 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 17 "complexity.l"
+#line 19 "complexity.l"
 
 
 int main(){
     int a = yylex();
+    int score = 0;
     FILE *f = fopen("result.txt","w");
-    fprintf(f,"%d\n",count + 1);
+
+    count++;
+    fprintf(f,"Cyclomatic Complexity : %d\n",(int)count);
+    score = 100 * pow(M_PI,-(count * count)/3000);
+    fprintf(f,"Cyclomatic Score : %d\n",score);
 } 

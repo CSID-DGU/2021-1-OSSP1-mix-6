@@ -79,7 +79,7 @@ def call_judge_vscode(code=""):
             # 복잡성 분석 테스트 결과
             if usr_settings['complexityAnalysisEnable']:
                 f_out = open(COMPLEX_RESULT_PATH, 'r')
-                result += "\ncomplexity : " + f_out.read()
+                result += "\n" + f_out.read()
                 f_out.close()
 
             # 의존성 분석 테스트 결과

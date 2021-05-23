@@ -1,5 +1,7 @@
 %{
-unsigned count=0;
+#define _USE_MATH_DEFINES
+#include <math.h>
+float count=0;
 %}
 letter [a-zA-z_]
 digit [0-9]
@@ -18,6 +20,11 @@ eol \n
 
 int main(){
     int a = yylex();
+    int score = 0;
     FILE *f = fopen("result.txt","w");
-    fprintf(f,"%d\n",count + 1);
+
+    count++;
+    fprintf(f,"Cyclomatic Complexity : %d\n",(int)count);
+    score = 100 * pow(M_PI,-(count * count)/3000);
+    fprintf(f,"Cyclomatic Score : %d\n",score);
 } 
