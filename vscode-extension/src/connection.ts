@@ -1,5 +1,6 @@
 export async function get_result(_code: string, _settings: object) {
-    var result = "";
+    //var result = ""; 원래코드
+    var result = [""]; //개선 가능(for result view)
     var usr_code = { code : _code};
     var usr_settings = {settings : _settings}
     var sending_obj = Object.assign(usr_code, usr_settings)
@@ -16,10 +17,23 @@ export async function get_result(_code: string, _settings: object) {
         },
         body: JSON.stringify(sending_obj),
     })
-        .then((res : any) => res.json())
+        //원래 코드
+        /* .then((res : any) => res.json())
         .then((res : any) => {
             result = JSON.stringify(res);
             console.log(res)
+        }); */
+
+        //개선 가능(for result view)
+        .then((res : any) => res.json())
+        .then((res : any) => {
+            console.log(res);
+            const keys = Object.keys(res);
+            for (let i = keys.length - 1; i >= 0; i--){
+                const key = keys[i];
+                result[i] = res[key];
+                console.log(res[key]);
+            }
         });
 
     return result;

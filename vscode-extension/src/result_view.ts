@@ -6,15 +6,14 @@ export class TreeDataProvider implements vscode.TreeDataProvider<TreeItem> {
 	data: TreeItem[];
 
 	constructor() {
-		this.data = [new TreeItem('results', [
-			new TreeItem('naming', []),
+		this.data = [new TreeItem('results', [])];
+			/* new TreeItem('naming', []),
 			new TreeItem('parameter', []),
 			new TreeItem('complexity', []),
 			new TreeItem('input control', []),
 			new TreeItem('redundant code', []),
 			new TreeItem('run time, memory use', []),
-			new TreeItem('Dependency', [])
-		])];
+			new TreeItem('Dependency', []) */
 	}
 
 	getTreeItem(element: TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {

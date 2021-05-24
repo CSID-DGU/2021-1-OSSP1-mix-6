@@ -4,15 +4,14 @@ exports.TreeItem = exports.TreeDataProvider = void 0;
 const vscode = require("vscode");
 class TreeDataProvider {
     constructor() {
-        this.data = [new TreeItem('results', [
-                new TreeItem('naming', []),
-                new TreeItem('parameter', []),
-                new TreeItem('complexity', []),
-                new TreeItem('input control', []),
-                new TreeItem('redundant code', []),
-                new TreeItem('run time, memory use', []),
-                new TreeItem('Dependency', [])
-            ])];
+        this.data = [new TreeItem('results', [])];
+        /* new TreeItem('naming', []),
+        new TreeItem('parameter', []),
+        new TreeItem('complexity', []),
+        new TreeItem('input control', []),
+        new TreeItem('redundant code', []),
+        new TreeItem('run time, memory use', []),
+        new TreeItem('Dependency', []) */
     }
     getTreeItem(element) {
         return element;

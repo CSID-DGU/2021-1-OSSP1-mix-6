@@ -42,7 +42,9 @@ def call_judge(code=""):
 @app.route('/vscode', methods=['POST'])
 def call_judge_vscode(code=""):
     usr_src = "empty"
-    result = ""
+    #result = "" #원래 코드
+    input_analysis = "" #개선 가능(for result view)
+    complexity_analysis = "" #개선 가능(for result view)
 
     if request.method == 'POST':
         req = request.get_json()
@@ -71,13 +73,15 @@ def call_judge_vscode(code=""):
             # 입력 제어 테스트 결과
             if usr_settings['inputAnalysisEnable']:
                 f_out = open(INPUT_TEST_RESULT, 'r')
-                result += ('\n' + f_out.read())
+                #result += ('\n' + f_out.read()) #원래 코드
+                input_analysis += f_out.read() #개선 가능(for result view)
                 f_out.close()
 
             # 복잡성 분석 테스트 결과
             if usr_settings['complexityAnalysisEnable']:
                 f_out = open(COMPLEX_RESULT_PATH, 'r')
-                result += "\ncomplexity : " + f_out.read()
+                #result += "\ncomplexity : " + f_out.read() #원래 코드
+                complexity_analysis += "complexity : " + f_out.read() #개선 가능(for result view)
                 f_out.close()
 
         elif exit_code == 111:
@@ -85,7 +89,8 @@ def call_judge_vscode(code=""):
         else:
             result = "Runtime Error!"
 
-    return jsonify(result)
+    return jsonify({"input_analysis":input_analysis, "complexity_analysis":complexity_analysis}) #개선 가능(for result view)
+    #return jsonify(result) #원래 코드
 
 
 @app.route('/')

@@ -32,8 +32,16 @@ export function activate(context: vscode.ExtensionContext) {
 		
 		// provider.addTreeItem(new rv.TreeItem('Something'));
 		
-		var response = conn.get_result(usr_code, settings);
-		console.log(response);
+		//원래코드
+		/* var response = conn.get_result(usr_code, settings);
+		console.log(response); */
+
+		//개선 가능 코드(for result view)
+		conn.get_result(usr_code, settings).then((res: string[]) => {
+			for (let i = res.length - 1; i >= 0; i--) {
+				provider.addTreeItem(new rv.TreeItem(res[i]));
+			}
+		})
 		
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Judge Start');

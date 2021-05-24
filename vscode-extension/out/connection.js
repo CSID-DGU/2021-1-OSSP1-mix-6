@@ -12,7 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.get_settings = exports.get_result = void 0;
 function get_result(_code, _settings) {
     return __awaiter(this, void 0, void 0, function* () {
-        var result = "";
+        //var result = ""; 원래코드
+        var result = [""]; //개선 가능(for result view)
         var usr_code = { code: _code };
         var usr_settings = { settings: _settings };
         var sending_obj = Object.assign(usr_code, usr_settings);
@@ -26,11 +27,22 @@ function get_result(_code, _settings) {
             },
             body: JSON.stringify(sending_obj),
         })
+            //원래 코드
+            /* .then((res : any) => res.json())
+            .then((res : any) => {
+                result = JSON.stringify(res);
+                console.log(res)
+            }); */
+            //개선 가능(for result view)
             .then((res) => res.json())
             .then((res) => {
-            result = JSON.stringify(res);
-            console.log(result); // for test
             console.log(res);
+            const keys = Object.keys(res);
+            for (let i = keys.length - 1; i >= 0; i--) {
+                const key = keys[i];
+                result[i] = res[key];
+                console.log(res[key]);
+            }
         });
         return result;
     });
