@@ -25,6 +25,10 @@ COMPLEXITY_PATH = HOME_PATH + "complexity/"
 SCANNER_PATH = COMPLEXITY_PATH + "complexity.py"
 COMPLEX_RESULT_PATH = COMPLEXITY_PATH + "result.txt"
 
+PARAMETER_PATH = HOME_PATH + "parameter/"
+GET_PARAMETER = PARAMETER_PATH + "get_parameter.py"
+PARAMETER_RESULT_PATH = PARAMETER_PATH + "parameter_result.txt"
+
 INPUT_DIR_PATH = HOME_PATH + "input_test/input/"
 OUTPUT_PATH = HOME_PATH + "output.txt"
 

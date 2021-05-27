@@ -54,6 +54,12 @@ else:
         os.execl(PYTHON_PATH, "python3", DEPENDENCY_JUDGE_PATH)
     os.waitpid(pid_complex, 0)
 
+    # 매개변수 분석
+    pid_complex = os.fork()
+    if pid_complex == 0:
+        os.execl(PYTHON_PATH, "python3", GET_PARAMETER)
+    os.waitpid(pid_complex, 0)
+
     # 단순 실행 파트
     # fd = os.fdopen(f_output, "w")
 
