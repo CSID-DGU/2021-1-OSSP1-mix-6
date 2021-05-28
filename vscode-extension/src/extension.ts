@@ -14,6 +14,9 @@ export function activate(context: vscode.ExtensionContext) {
 
 	var provider = new rv.TreeDataProvider;
 	vscode.window.registerTreeDataProvider('view1', provider);
+	//개선 위해 추가 코드(for result view)
+	vscode.commands.registerCommand('vscode-extension.refreshEntry', ()=> provider.refresh());
+	//추가 코드 end
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -36,6 +39,10 @@ export function activate(context: vscode.ExtensionContext) {
 		/* var response = conn.get_result(usr_code, settings);
 		console.log(response); */
 
+		//개선 위한 추가 코드(for result view)
+		provider.refresh();
+		//추가 코드 end
+		
 		//개선 가능 코드(for result view)
 		conn.get_result(usr_code, settings).then((res: string[]) => {
 			for (let i = res.length - 1; i >= 0; i--) {

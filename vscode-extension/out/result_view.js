@@ -4,6 +4,11 @@ exports.TreeItem = exports.TreeDataProvider = void 0;
 const vscode = require("vscode");
 class TreeDataProvider {
     constructor() {
+        //원래코드
+        //onDidChangeTreeData?: vscode.Event<TreeItem | null | undefined> | undefined;
+        //개선코드(for result view)
+        this._onDidChangeTreeData = new vscode.EventEmitter();
+        this.onDidChangeTreeData = this._onDidChangeTreeData.event;
         this.data = [new TreeItem('results', [])];
         /* new TreeItem('naming', []),
         new TreeItem('parameter', []),
@@ -13,6 +18,12 @@ class TreeDataProvider {
         new TreeItem('run time, memory use', []),
         new TreeItem('Dependency', []) */
     }
+    //개선 위해 추가 코드(for result view)
+    refresh() {
+        this.data[0].children = [];
+        this._onDidChangeTreeData.fire(undefined);
+    }
+    //추가 코드 end
     getTreeItem(element) {
         return element;
     }
