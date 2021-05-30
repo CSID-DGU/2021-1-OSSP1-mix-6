@@ -1,6 +1,6 @@
 TEST_PATH = "/home/dw/server/"
-HOME_PATH = TEST_PATH
-# HOME_PATH = "/app/"
+# HOME_PATH = TEST_PATH
+HOME_PATH = "/app/"
 
 INPUT_TEST_PATH = HOME_PATH + "input_test/"
 
@@ -35,7 +35,7 @@ DEPENDENCY_JUDGE_PATH = DEPENDENCY_PATH + "judge_dependency.py"
 DEPENDENCY_RESULT_PATH = DEPENDENCY_PATH + "dependency_result.txt"
 
 NAMING_PATH = HOME_PATH + "naming/"
-NAMING_JUDGE_PATH = DEPENDENCY_PATH + "judge_naming.py"
-NAMING_RESULT_PATH = DEPENDENCY_PATH + "naming_result.txt"
+NAMING_JUDGE_PATH = NAMING_PATH + "judge_naming.py"
+NAMING_RESULT_PATH = NAMING_PATH + "naming_result.txt"
 
 INPUT_TEST_RESULT = INPUT_TEST_PATH + "input_test_result.txt"

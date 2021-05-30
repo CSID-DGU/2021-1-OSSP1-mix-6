@@ -89,10 +89,16 @@ def call_judge_vscode(code=""):
                 f_out.close()
 
             # 매개변수 분석 테스트 결과
-            #if usr_settings['dependenceAnalysisEnable']:
-            f_out = open(PARAMETER_RESULT_PATH, 'r')
-            result += "\n" + f_out.read()
-            f_out.close()
+            if usr_settings['parameterAnalysisEnable']:
+                f_out = open(PARAMETER_RESULT_PATH, 'r')
+                result += "\n" + f_out.read()
+                f_out.close()
+
+            # 네이밍 규칙 분석 결과
+            if usr_settings['namingAnalysisEnable']:
+                f_out = open(NAMING_RESULT_PATH, 'r')
+                result += "\n" + f_out.read()
+                f_out.close()
 
         elif exit_code == 111:
             result = "Compile Error!"

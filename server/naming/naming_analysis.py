@@ -1,19 +1,20 @@
 import os
 import sys
-import json
 import re
 from clang import cindex
+
 sys.path.append(os.path.abspath('./'))
-# from settings import *
+from settings import *
 
 
 # libclang 파일 경로 바인딩
 # 로컬 디버깅 경로
 # cindex.Config.set_library_path("/usr/lib/llvm-11/lib")
-cindex.Config.set_library_path("/home/dw/.local/lib/python3.8/site-packages/clang/native")
+# cindex.Config.set_library_path("/home/dw/.local/lib/python3.8/site-packages/clang/native")
+
 
 # 도커 빌드 경로
-# cindex.Config.set_library_file("/usr/lib/llvm-7/lib/libclang-7.so.1")
+cindex.Config.set_library_file("/usr/lib/llvm-7/lib/libclang-7.so.1")
 
 # ast 전체 출력
 class ast:
@@ -35,19 +36,16 @@ class ast:
             else:
                 continue
 
+
 # 결합도 분석
 # 함수 내부에서 외부 클래스, 외부 함수, 재귀 사용할 때마다 결합도 1씩 증가
 class Naming:
-    def __init__(self, path):
+    def __init__(self, path, settings):
         self.path = path
 
-        lower_camel_case = re.compile('^[a-z]+(?:[A-Z][a-z]+)*$')
-        pascal_case = re.compile('^[A-Z][a-z]+(?:[A-Z][a-z]+)*$')
-        snake_case = re.compile('([A-Z]*_?[A-Z]*)*')
-
-        self.var_pattern = snake_case
-        self.func_pattern = lower_camel_case
-        self.class_pattern = pascal_case
+        self.var_pattern = re.compile(settings['namingRuleVariable'])
+        self.func_pattern = re.compile(settings['namingRuleFunction'])
+        self.class_pattern = re.compile(settings['namingRuleClass'])
 
         self.var_name_set = set()
         self.func_name_set = set()
@@ -66,39 +64,29 @@ class Naming:
         self.matching()
 
     def save_result(self):
+        total = len(self.var_name_set) + len(self.func_name_set) + len(self.class_name_set)
+        bad = len(self.var_unmatched) + len(self.func_unmatched) + len(self.class_unmatched)
 
-        print("Var")
-        print(self.var_name_set)
-        print("Func")
-        print(self.func_name_set)
-        print("Class")
-        print(self.class_name_set)
+        total_result = "Naming Score: " + str(total - bad) + '/' + str(total) + "\n"
 
-        print("unmatched var func class")
-        print(self.var_unmatched)
-        print(self.func_unmatched)
-        print(self.class_unmatched)
-
-        """high_dp = []
-        func_str = ""
-        for k, v in self.dependency_score.items():
-            if v >= 5:
-                high_dp.append((k, v))
-                func_str += (k + ", ")
-
-        total = len(self.dependency_score)
-        bad = len(high_dp)
-
-        total_result = "Dependecny Score: " + str(total - bad) + '/' + str(total)
-        bad_func = ""
         if bad > 0:
-            bad_func = "\nHigh Coupling Functions : " + func_str
+            bad_var = "  - variable : "
+            bad_func = "  - function : "
+            bad_class = "  - class : "
 
-        result = total_result + bad_func
+            for i in self.var_unmatched:
+                bad_var += i + ", "
+            for i in self.func_unmatched:
+                bad_func += i + ", "
+            for i in self.class_unmatched:
+                bad_class += i + ", "
+
+            bad_result = "- Unmatched Names\n" + bad_var + "\n" + bad_func + "\n" + bad_class
+            total_result += bad_result
 
         f_out = open(NAMING_RESULT_PATH, 'w')
-        f_out.write(result)
-        f_out.close()"""
+        f_out.write(total_result)
+        f_out.close()
 
     def get_name_set(self, node):
         if (node.kind == cindex.CursorKind.FUNCTION_DECL
@@ -132,4 +120,3 @@ class Naming:
             m = self.class_pattern.match(s)
             if m is None:
                 self.class_unmatched.append(s)
-

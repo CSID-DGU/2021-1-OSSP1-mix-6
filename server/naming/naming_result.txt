@@ -1,0 +1,5 @@
+Naming Score: 4/9
+- Unmatched Names
+  - variable : my_int, Integer, MyInt, 
+  - function : MyFunc, my_method, 
+  - class : 

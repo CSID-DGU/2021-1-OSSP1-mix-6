@@ -60,6 +60,7 @@ else:
         os.execl(PYTHON_PATH, "python3", GET_PARAMETER)
     os.waitpid(pid_complex, 0)
 
+    # 네이밍 분석
     pid_complex = os.fork()
     if pid_complex == 0:
         os.execl(PYTHON_PATH, "python3", NAMING_JUDGE_PATH, sys.argv[1])
