@@ -54,7 +54,7 @@
 				},
 				"judge.namingAnalysis.NamingRuleVariable" : {
 					"type":"string",
-					"default":"^[a-z]+(?:[A-Z][a-z]+)*$",
+					"default":"[a-z]+(_[a-z]+)*",
 					"description": "Please enter a regular expression. The default is snake_case."
 				},
 				"judge.namingAnalysis.NamingRuleFunction" : {
