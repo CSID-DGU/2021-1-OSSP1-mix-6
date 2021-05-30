@@ -26,9 +26,9 @@ export async function get_result(_code: string, _settings: object) {
 export function get_settings(settings: any) {
     var ret = {
         namingAnalysisEnable: settings.namingAnalysis.enable,
-        nameingRuleVariable: settings.NamingRuleVariable,
-        nameingRuleFunction: settings.NamingRuleFunction,
-        nameingRuleClass: settings.NamingRuleClass,
+        namingRuleVariable: settings.namingAnalysis.NamingRuleVariable,
+        namingRuleFunction: settings.namingAnalysis.NamingRuleFunction,
+        namingRuleClass: settings.namingAnalysis.NamingRuleClass,
 
         complexityAnalysisEnable : settings.complexityAnalysis.enable,
 
