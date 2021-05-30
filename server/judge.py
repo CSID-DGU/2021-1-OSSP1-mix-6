@@ -60,6 +60,11 @@ else:
         os.execl(PYTHON_PATH, "python3", GET_PARAMETER)
     os.waitpid(pid_complex, 0)
 
+    pid_complex = os.fork()
+    if pid_complex == 0:
+        os.execl(PYTHON_PATH, "python3", NAMING_JUDGE_PATH, sys.argv[1])
+    os.waitpid(pid_complex, 0)
+
     # 단순 실행 파트
     # fd = os.fdopen(f_output, "w")
 
