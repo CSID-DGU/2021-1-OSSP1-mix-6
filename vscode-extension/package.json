@@ -52,9 +52,20 @@
 					"type":"boolean",
 					"default":true
 				},
-				"judge.namingAnalysis.addNamingRule" : {
-					"type":"array",
-					"default":[]
+				"judge.namingAnalysis.NamingRuleVariable" : {
+					"type":"string",
+					"default":["^[a-z]+(?:[A-Z][a-z]+)*$"],
+					"description": "Please enter a regular expression. The default is snake_case."
+				},
+				"judge.namingAnalysis.NamingRuleFunction" : {
+					"type":"string",
+					"default":["^[a-z]+(?:[A-Z][a-z]+)*$"],
+					"description": "Please enter a regular expression. The default is lowerCamelCase."
+				},
+				"judge.namingAnalysis.NamingRuleClass" : {
+					"type":"string",
+					"default":["^[A-Z][a-z]+(?:[A-Z][a-z]+)*$"],
+					"description": "Please enter a regular expression. The default is PascalCase."
 				},
 				"judge.inputAnalysis.enable" : {
 					"type":"boolean",
