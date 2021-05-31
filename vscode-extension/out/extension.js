@@ -32,11 +32,11 @@ function activate(context) {
         //원래코드
         /* var response = conn.get_result(usr_code, settings);
         console.log(response); */
-        //개선 위한 추가 코드(for result view)
-        provider.refresh();
-        //추가 코드 end
         //개선 가능 코드(for result view)
         conn.get_result(usr_code, settings).then((res) => {
+            //개선 위한 추가 코드(for result view)
+            provider.refresh();
+            //추가 코드 end
             for (let i = res.length - 1; i >= 0; i--) {
                 provider.addTreeItem(new rv.TreeItem(res[i]));
             }
