@@ -26,12 +26,20 @@ export async function get_result(_code: string, _settings: object) {
 export function get_settings(settings: any) {
     var ret = {
         namingAnalysisEnable: settings.namingAnalysis.enable,
+        namingRuleVariable: settings.namingAnalysis.NamingRuleVariable,
+        namingRuleFunction: settings.namingAnalysis.NamingRuleFunction,
+        namingRuleClass: settings.namingAnalysis.NamingRuleClass,
+
         complexityAnalysisEnable : settings.complexityAnalysis.enable,
+
         inputAnalysisEnable : settings.inputAnalysis.enable,
         inputTimeout : settings.inputAnalysis.timeout,
         inputType : settings.inputAnalysis.type,
+
         duplicationAnalysisEnable : settings.duplicationAnalysis.enable,
+
         parameterAnalysisEnable : settings.parameterAnalysis.enable,
+
         dependenceAnalysisEnable : settings.dependenceAnalysis.enable
     };
 

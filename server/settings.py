@@ -4,7 +4,6 @@ HOME_PATH = "/app/"
 
 INPUT_TEST_PATH = HOME_PATH + "input_test/"
 
-
 PYTHON_TEST_PATH = "/usr/bin/python3"
 # PYTHON_PATH = PYTHON_TEST_PATH
 
@@ -20,7 +19,6 @@ USR_CODE_PATH = HOME_PATH + "usr_code.cpp"
 OBJ_FILE_PATH = HOME_PATH + "a.out"
 COMPILE_LOG_PATH = HOME_PATH + "log.txt"
 
-
 COMPLEXITY_PATH = HOME_PATH + "complexity/"
 SCANNER_PATH = COMPLEXITY_PATH + "complexity.py"
 COMPLEX_RESULT_PATH = COMPLEXITY_PATH + "result.txt"
@@ -35,5 +33,9 @@ OUTPUT_PATH = HOME_PATH + "output.txt"
 DEPENDENCY_PATH = HOME_PATH + "dependency/"
 DEPENDENCY_JUDGE_PATH = DEPENDENCY_PATH + "judge_dependency.py"
 DEPENDENCY_RESULT_PATH = DEPENDENCY_PATH + "dependency_result.txt"
+
+NAMING_PATH = HOME_PATH + "naming/"
+NAMING_JUDGE_PATH = NAMING_PATH + "judge_naming.py"
+NAMING_RESULT_PATH = NAMING_PATH + "naming_result.txt"
 
 INPUT_TEST_RESULT = INPUT_TEST_PATH + "input_test_result.txt"

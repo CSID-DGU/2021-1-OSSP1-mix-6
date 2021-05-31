@@ -37,6 +37,9 @@ exports.get_result = get_result;
 function get_settings(settings) {
     var ret = {
         namingAnalysisEnable: settings.namingAnalysis.enable,
+        namingRuleVariable: settings.namingAnalysis.NamingRuleVariable,
+        namingRuleFunction: settings.namingAnalysis.NamingRuleFunction,
+        namingRuleClass: settings.namingAnalysis.NamingRuleClass,
         complexityAnalysisEnable: settings.complexityAnalysis.enable,
         inputAnalysisEnable: settings.inputAnalysis.enable,
         inputTimeout: settings.inputAnalysis.timeout,
