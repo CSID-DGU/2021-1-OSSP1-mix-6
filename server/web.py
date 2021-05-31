@@ -76,7 +76,7 @@ def call_judge_vscode(code=""):
                 result += ('\n' + f_out.read())
                 f_out.close()
 
-            # 복잡성 분석 테스트 결과
+            # 순환복잡도 분석 테스트 결과
             if usr_settings['complexityAnalysisEnable']:
                 f_out = open(COMPLEX_RESULT_PATH, 'r')
                 result += "\n" + f_out.read()
@@ -99,6 +99,11 @@ def call_judge_vscode(code=""):
                 f_out = open(NAMING_RESULT_PATH, 'r')
                 result += "\n" + f_out.read()
                 f_out.close()
+            
+            # 중첩 복잡도 분석 결과
+            f_out = open(REPEAT_RESULT_PATH, 'r')
+            result += "\n" + f_out.read()
+            f_out.close()
 
         elif exit_code == 111:
             result = "Compile Error!"

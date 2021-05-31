@@ -1,5 +1,6 @@
 from repeat import *
+from settings import *
 
 # rep = ast("main.cpp")
-rep = Repeat("main.cpp")
-# rep.set_code_lind()
+file_path = USR_CODE_PATH
+rep = Repeat(file_path)
