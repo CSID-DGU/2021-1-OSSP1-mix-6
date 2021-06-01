@@ -42,7 +42,7 @@ else:
         os.execl(PYTHON_PATH, "python3", JUDGE_INPUT_PATH, sys.argv[1])
     os.waitpid(pid_judge_input, 0)
 
-    # 복잡성 분석
+    # 순환복잡도 분석
     pid_complex = os.fork()
     if pid_complex == 0:
         os.execl(PYTHON_PATH, "python3", SCANNER_PATH)
@@ -65,6 +65,12 @@ else:
     if pid_complex == 0:
         os.execl(PYTHON_PATH, "python3", NAMING_JUDGE_PATH, sys.argv[1])
     os.waitpid(pid_complex, 0)
+
+    # 중첩복잡도 분석
+    pid_repeat = os.fork()
+    if pid_repeat == 0:
+        os.execl(PYTHON_PATH, "python3", REPEAT_JUDGE_PATH)
+    os.waitpid(pid_repeat, 0)
 
     # 단순 실행 파트
     # fd = os.fdopen(f_output, "w")

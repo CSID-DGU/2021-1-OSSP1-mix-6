@@ -38,4 +38,8 @@ NAMING_PATH = HOME_PATH + "naming/"
 NAMING_JUDGE_PATH = NAMING_PATH + "judge_naming.py"
 NAMING_RESULT_PATH = NAMING_PATH + "naming_result.txt"
 
+REPEAT_PATH = "repeat_complexity/"
+REPEAT_JUDGE_PATH = REPEAT_PATH + "judge_repeat.py"
+REPEAT_RESULT_PATH = REPEAT_PATH + "repeat_result.txt"
+
 INPUT_TEST_RESULT = INPUT_TEST_PATH + "input_test_result.txt"
