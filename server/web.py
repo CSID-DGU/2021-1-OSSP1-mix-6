@@ -42,9 +42,16 @@ def call_judge(code=""):
 @app.route('/vscode', methods=['POST'])
 def call_judge_vscode(code=""):
     usr_src = "empty"
-    #result = "" #원래 코드
-    input_analysis = "" #개선 가능(for result view)
-    complexity_analysis = "" #개선 가능(for result view)
+    #result = ""
+    input_analysis = ""
+    complexity_analysis = ""
+    complexity_score = ""
+    dependence_analysis = ""
+    parameter_analysis = ""
+    naming_analysis = ""
+    repetition_analysis = ""
+    compile_error = ""
+    runtime_error = ""
 
     if request.method == 'POST':
         req = request.get_json()
@@ -59,7 +66,7 @@ def call_judge_vscode(code=""):
 
         pid = os.fork()
         if pid == 0:
-            os.execl(PYTHON_PATH, "python3", JUDGE_PATH)
+            os.execl(PYTHON_PATH, "python3", JUDGE_PATH, str(json.dumps(usr_settings)))
 
         judge_info = os.waitpid(pid, 0)
         exit_code = os.WEXITSTATUS(judge_info[1])
@@ -73,25 +80,58 @@ def call_judge_vscode(code=""):
             # 입력 제어 테스트 결과
             if usr_settings['inputAnalysisEnable']:
                 f_out = open(INPUT_TEST_RESULT, 'r')
-                #result += ('\n' + f_out.read()) #원래 코드
-                input_analysis += f_out.read() #개선 가능(for result view)
+                #result += ('\n' + f_out.read())
+                input_analysis = f_out.read()
                 f_out.close()
 
-            # 복잡성 분석 테스트 결과
+            # 순환복잡도 분석 테스트 결과
             if usr_settings['complexityAnalysisEnable']:
                 f_out = open(COMPLEX_RESULT_PATH, 'r')
-                #result += "\ncomplexity : " + f_out.read() #원래 코드
-                complexity_analysis += "complexity : " + f_out.read() #개선 가능(for result view)
+                #result += "\n" + f_out.read()
+                complexity_analysis = f_out.readline()
+                complexity_score = f_out.readline()
                 f_out.close()
 
+            # 의존성 분석 테스트 결과
+            if usr_settings['dependenceAnalysisEnable']:
+                f_out = open(DEPENDENCY_RESULT_PATH, 'r')
+                #result += "\n" + f_out.read()
+                dependence_analysis = f_out.read()
+                f_out.close()
+
+            # 매개변수 분석 테스트 결과
+            if usr_settings['parameterAnalysisEnable']:
+                f_out = open(PARAMETER_RESULT_PATH, 'r')
+                #result += "\n" + f_out.read()
+                parameter_analysis = f_out.read()
+                f_out.close()
+
+            # 네이밍 규칙 분석 결과
+            if usr_settings['namingAnalysisEnable']:
+                f_out = open(NAMING_RESULT_PATH, 'r')
+                #result += "\n" + f_out.read()
+                naming_analysis = f_out.read()
+                f_out.close()
+            
+            # 중첩 복잡도 분석 결과
+            f_out = open(REPEAT_RESULT_PATH, 'r')
+            #result += "\n" + f_out.read()
+            repetition_analysis = f_out.read()
+            f_out.close()
+
         elif exit_code == 111:
-            result = "Compile Error!"
+            #result = "Compile Error!"
+            compile_error = "Compile Error!"
+            return jsonify({"compile_error": compile_error})
         else:
-            result = "Runtime Error!"
+            #result = "Runtime Error!"
+            runtime_error = "Runtime Error!"
+            return jsonify({"runtime_error": runtime_error})
 
-    return jsonify({"input_analysis":input_analysis, "complexity_analysis":complexity_analysis}) #개선 가능(for result view)
-    #return jsonify(result) #원래 코드
-
+    return jsonify({"input_analysis":input_analysis, "complexity_analysis":complexity_analysis,
+    "complexity_score": complexity_score, "dependence_analysis":dependence_analysis,
+    "parameter_analysis":parameter_analysis, "naming_analysis": naming_analysis, 
+    "repetition_analysis": repetition_analysis})
 
 @app.route('/')
 def home(code=""):
