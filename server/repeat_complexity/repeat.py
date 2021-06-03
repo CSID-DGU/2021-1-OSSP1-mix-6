@@ -25,12 +25,12 @@ class ast:
         self.traverse(tu.cursor)
 
     def traverse(self, node, i=0):
-        # print('\t' * i, end="")
-        # print(node.kind, end="")
-        # print(" : ", end="")
-        # print(node.displayname, end=" ")
-        # print(node.location.line, end="")
-        # print("")
+        print('\t' * i, end="")
+        print(node.kind, end="")
+        print(" : ", end="")
+        print(node.displayname, end=" ")
+        print(node.location.line, end="")
+        print("")
         for child in node.get_children():
             if str(self.path) == str(child.location.file):
                 self.traverse(child, i=i + 1)
@@ -49,8 +49,6 @@ class Repeat:
         self.get_over_repeat()
     
     def get_over_repeat(self):
-        # print("over_reapet : ",self.over_repeat)
-        # print("num_of_item : ",self.item)
         f = open(REPEAT_RESULT_PATH, "w")
         f.write("Repeat Comlexity Score : " + str(self.over_repeat) + "/" + str(self.item))
         f.close()
@@ -66,19 +64,11 @@ class Repeat:
                 self.idx = i
             else:
                 self.repeat += 1
-            # print('\t' * i, end="")
-            # print("loop in : ",end="")
-            # print(node.kind,end="")
-            # print(node.location.line)
             for child in node.get_children():
                 if str(self.path) == str(child.location.file):
                     self.get_loop(child, i=i + 1)
                 else:
                     continue
-            # print('\t' * i, end="")
-            # print("loop out ",end="")
-            # print(node.location.line,end=" ")
-            # print("repeat : ",self.repeat)
             if(self.idx == i):
                 if(self.repeat > 4):
                     self.over_repeat += 1
