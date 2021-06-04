@@ -2,11 +2,9 @@ import os
 import sys
 import json
 from clang import cindex
+
 sys.path.append(os.path.abspath('./'))
 from settings import *
-
-
-
 
 # libclang 파일 경로 바인딩
 # 로컬 디버깅 경로
@@ -15,6 +13,7 @@ from settings import *
 
 # 도커 빌드 경로
 cindex.Config.set_library_file("/usr/lib/llvm-7/lib/libclang-7.so.1")
+
 
 # ast 전체 출력
 class ast:
@@ -35,6 +34,7 @@ class ast:
                 self.traverse(child, i=i + 1)
             else:
                 continue
+
 
 # 결합도 분석
 # 함수 내부에서 외부 클래스, 외부 함수, 재귀 사용할 때마다 결합도 1씩 증가
@@ -64,7 +64,11 @@ class Dependency:
         total = len(self.dependency_score)
         bad = len(high_dp)
 
-        total_result = "Dependecny Score: " + str(total - bad) + '/' + str(total)
+        dp_score = 100.0
+        if total != 0:
+            dp_score = (total - bad) / total * 100
+
+        total_result = "Dependency Score: " + str(dp_score)
         bad_func = ""
         if bad > 0:
             bad_func = "\nHigh Coupling Functions : " + func_str
