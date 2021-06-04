@@ -76,7 +76,12 @@ elif input_type == 'number':
 elif input_type == 'string':
     test_input("_string", input_string)
 
-error_result = "Input Test Success : " + str(total - error) + '/' + str(total)
+
+input_score = 100.0
+if total != 0:
+    input_score = (total - error) / total  * 100
+
+error_result = "Input Test Success : " + str(input_score)
 # print(error_result)
 f_out = open(INPUT_TEST_RESULT, 'w')
 f_out.write(error_result)

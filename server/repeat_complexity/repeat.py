@@ -6,7 +6,6 @@ from clang import cindex
 sys.path.append(os.path.abspath('./'))
 from settings import *
 
-
 # libclang 파일 경로 바인딩
 # 로컬 디버깅 경로
 # cindex.Config.set_library_path("/usr/lib/llvm-11/lib")
@@ -15,6 +14,7 @@ from settings import *
 
 # 도커 빌드 경로
 cindex.Config.set_library_file("/usr/lib/llvm-7/lib/libclang-7.so.1")
+
 
 # ast 전체 출력
 class ast:
@@ -36,6 +36,8 @@ class ast:
                 self.traverse(child, i=i + 1)
             else:
                 continue
+
+
 class Repeat:
     def __init__(self, path):
         self.path = path
@@ -47,18 +49,21 @@ class Repeat:
         tu = index.parse(self.path)
         self.get_loop(tu.cursor)
         self.get_over_repeat()
-    
+
     def get_over_repeat(self):
         f = open(REPEAT_RESULT_PATH, "w")
-        f.write("Repeat Comlexity Score : " + str(self.over_repeat) + "/" + str(self.item))
+        comp_score = 100.0
+        if self.item != 0:
+            comp_score = self.over_repeat / self.item * 100
+        f.write("Repeat Comlexity Score : " + str(comp_score))
         f.close()
 
     def get_loop(self, node, i=0):
-        if(node.kind == cindex.CursorKind.FOR_STMT 
-            or node.kind == cindex.CursorKind.WHILE_STMT
-            or node.kind == cindex.CursorKind.IF_STMT
-            or node.kind == cindex.CursorKind.CASE_STMT):
-            if(self.repeat == 0):
+        if (node.kind == cindex.CursorKind.FOR_STMT
+                or node.kind == cindex.CursorKind.WHILE_STMT
+                or node.kind == cindex.CursorKind.IF_STMT
+                or node.kind == cindex.CursorKind.CASE_STMT):
+            if self.repeat == 0:
                 self.repeat = 1
                 self.item += 1
                 self.idx = i
@@ -69,8 +74,8 @@ class Repeat:
                     self.get_loop(child, i=i + 1)
                 else:
                     continue
-            if(self.idx == i):
-                if(self.repeat > 4):
+            if self.idx == i:
+                if self.repeat > 4:
                     self.over_repeat += 1
                 self.repeat = 0
         else:
@@ -79,4 +84,3 @@ class Repeat:
                     self.get_loop(child, i=i + 1)
                 else:
                     continue
-            

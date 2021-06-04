@@ -6,7 +6,6 @@ from clang import cindex
 sys.path.append(os.path.abspath('./'))
 from settings import *
 
-
 # libclang 파일 경로 바인딩
 # 로컬 디버깅 경로
 # cindex.Config.set_library_path("/usr/lib/llvm-11/lib")
@@ -15,6 +14,7 @@ from settings import *
 
 # 도커 빌드 경로
 cindex.Config.set_library_file("/usr/lib/llvm-7/lib/libclang-7.so.1")
+
 
 # ast 전체 출력
 class ast:
@@ -67,7 +67,10 @@ class Naming:
         total = len(self.var_name_set) + len(self.func_name_set) + len(self.class_name_set)
         bad = len(self.var_unmatched) + len(self.func_unmatched) + len(self.class_unmatched)
 
-        total_result = "Naming Score: " + str(total - bad) + '/' + str(total) + "\n"
+        naming_score = 100.0
+        if total != 0:
+            naming_score = (total - bad) / total * 100
+        total_result = "Naming Score: " + str(naming_score) + "\n"
 
         if bad > 0:
             bad_var = "  - variable : "
