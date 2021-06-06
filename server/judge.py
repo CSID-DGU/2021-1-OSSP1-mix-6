@@ -78,6 +78,12 @@ else:
         os.execl(PYTHON_PATH, "python3", GET_TIME, sys.argv[1])
     os.waitpid(pid_time, 0)
 
+    # 메모리 측정
+    pid_memory = os.fork()
+    if pid_memory == 0:
+        os.execl(PYTHON_PATH, "python3", GET_MEMORY, sys.argv[1])
+    os.waitpid(pid_memory, 0)
+
     # 단순 실행 파트
     # fd = os.fdopen(f_output, "w")
 

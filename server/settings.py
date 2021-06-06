@@ -48,3 +48,8 @@ TIME_PATH = HOME_PATH + "time/"
 GET_TIME = TIME_PATH + "get_time.py"
 TIME_RESULT_PATH = TIME_PATH + "execution_time.txt"
 TIME_INPUT_PATH = TIME_PATH + "time_stdin.txt"
+
+MEMORY_PATH = HOME_PATH + "memory/"
+GET_MEMORY = MEMORY_PATH + "get_memory.py"
+MEMORY_RESULT_PATH = MEMORY_PATH + "execution_memory.txt"
+MEMORY_INPUT_PATH = MEMORY_PATH + "memory_stdin.txt"

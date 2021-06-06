@@ -62,7 +62,6 @@ export function get_settings(settings: any) {
         timeMemoryAnalysisEnable : settings.timeMemoryAnalysis.enable,
         timeMemoryAnalysisTimeout : settings.timeMemoryAnalysis.timeout,
         timeMemoryAnalysisInput : settings.timeMemoryAnalysis.input
-
     };
 
     return ret;
