@@ -39,12 +39,24 @@ def call_judge(code=""):
 
     return jsonify(result)
 
-
 # vscode와 통신하는 HTTP POST 메소드
 @app.route('/vscode', methods=['POST'])
 def call_judge_vscode(code=""):
     usr_src = "empty"
-    result = ""
+    #result = ""
+    input_analysis = ""
+    complexity_analysis = ""
+    complexity_score = ""
+    dependency_score = ""
+    parameter_point = ""
+    naming_score = ""
+    unmatched_title = ""
+    unmatched_variable = ""
+    unmatched_func = ""
+    unmatched_class = ""
+    repetition_analysis = ""
+    compile_error = ""
+    runtime_error = ""
 
     if request.method == 'POST':
         req = request.get_json()
@@ -73,45 +85,61 @@ def call_judge_vscode(code=""):
             # 입력 제어 테스트 결과
             if usr_settings['inputAnalysisEnable']:
                 f_out = open(INPUT_TEST_RESULT, 'r')
-                result += ('\n' + f_out.read())
+                #result += ('\n' + f_out.read())
+                input_analysis = f_out.read()
                 f_out.close()
 
             # 순환복잡도 분석 테스트 결과
             if usr_settings['complexityAnalysisEnable']:
                 f_out = open(COMPLEX_RESULT_PATH, 'r')
-                result += "\n" + f_out.read()
+                #result += "\n" + f_out.read()
+                complexity_analysis = f_out.readline()
+                complexity_score = f_out.readline()
                 f_out.close()
 
             # 의존성 분석 테스트 결과
             if usr_settings['dependenceAnalysisEnable']:
                 f_out = open(DEPENDENCY_RESULT_PATH, 'r')
-                result += "\n" + f_out.read()
+                #result += "\n" + f_out.read()
+                dependency_score = f_out.read()
                 f_out.close()
 
             # 매개변수 분석 테스트 결과
             if usr_settings['parameterAnalysisEnable']:
                 f_out = open(PARAMETER_RESULT_PATH, 'r')
-                result += "\n" + f_out.read()
+                #result += "\n" + f_out.read()
+                parameter_point = f_out.read()
                 f_out.close()
 
             # 네이밍 규칙 분석 결과
             if usr_settings['namingAnalysisEnable']:
                 f_out = open(NAMING_RESULT_PATH, 'r')
-                result += "\n" + f_out.read()
+                #result += "\n" + f_out.read()
+                naming_score = f_out.readline()
+                unmatched_title = f_out.readline()
+                unmatched_variable = f_out.readline()
+                unmatched_func = f_out.readline()
+                unmatched_class = f_out.readline()
                 f_out.close()
             
             # 중첩 복잡도 분석 결과
             f_out = open(REPEAT_RESULT_PATH, 'r')
-            result += "\n" + f_out.read()
+            #result += "\n" + f_out.read()
+            repetition_analysis = f_out.read()
             f_out.close()
 
         elif exit_code == 111:
-            result = "Compile Error!"
+            #result = "Compile Error!"
+            compile_error = "Compile Error!"
+            return jsonify([compile_error])
         else:
-            result = "Runtime Error!"
+            #result = "Runtime Error!"
+            runtime_error = "Runtime Error!"
+            return jsonify([runtime_error])
 
-    return jsonify(result)
-
+    return jsonify([input_analysis, complexity_analysis, complexity_score, dependency_score,
+    parameter_point, naming_score, unmatched_title, unmatched_variable, unmatched_func,
+    unmatched_class, repetition_analysis])
 
 @app.route('/')
 def home(code=""):

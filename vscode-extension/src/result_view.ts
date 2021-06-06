@@ -1,16 +1,24 @@
 import * as vscode from 'vscode';
 
 export class TreeDataProvider implements vscode.TreeDataProvider<TreeItem> {
-	onDidChangeTreeData?: vscode.Event<TreeItem | null | undefined> | undefined;
+	//원래코드
+	//onDidChangeTreeData?: vscode.Event<TreeItem | null | undefined> | undefined;
+	//개선코드(for result view)
+	private _onDidChangeTreeData: vscode.EventEmitter<TreeItem | null | undefined> = new vscode.EventEmitter<TreeItem | null | undefined>();
+	readonly onDidChangeTreeData: vscode.Event<TreeItem | null | undefined> = this._onDidChangeTreeData.event;
 
 	data: TreeItem[];
 
 	constructor() {
-		this.data = [new TreeItem('results', [
-			new TreeItem('v1'),
-			new TreeItem('v2'),
-		])];
+		this.data = [new TreeItem('results', [])];
 	}
+
+	//개선 위해 추가 코드(for result view)
+	refresh(): void {
+		this.data[0].children = [];
+		this._onDidChangeTreeData.fire(undefined);
+	}
+	//추가 코드 end
 
 	getTreeItem(element: TreeItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
 		return element;

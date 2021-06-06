@@ -1,11 +1,13 @@
 export async function get_result(_code: string, _settings: object) {
-    var result;
+    //var result = ""; 원래코드
+    var result = [""]; //개선 가능(for result view)
     var usr_code = { code : _code};
     var usr_settings = {settings : _settings}
     var sending_obj = Object.assign(usr_code, usr_settings)
 
     console.log(sending_obj);
     
+
     const fetch = require("node-fetch");
     await fetch("http://127.0.0.1:8888/vscode", {
         method: "POST",
@@ -15,9 +17,24 @@ export async function get_result(_code: string, _settings: object) {
         },
         body: JSON.stringify(sending_obj),
     })
+        //원래 코드
+        /* .then((res : any) => res.json())
+        .then((res : any) => {
+            result = JSON.stringify(res);
+            console.log(res)
+        }); */
+
+        //개선 가능(for result view)
         .then((res : any) => res.json())
         .then((res : any) => {
-            console.log(res)
+            let j = 0;
+            for (var i = 0; i < res.length; i++){
+                if (res[i] !== ''){
+                    result[j] = res[i];
+                    console.log(result[j]);
+                    j++;
+                }
+            }
         });
 
     return result;
