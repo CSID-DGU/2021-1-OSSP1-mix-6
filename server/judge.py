@@ -72,6 +72,11 @@ else:
         os.execl(PYTHON_PATH, "python3", REPEAT_JUDGE_PATH)
     os.waitpid(pid_repeat, 0)
 
+    # 실행시간 측정
+    pid_time = os.fork()
+    if pid_time == 0:
+        os.execl(PYTHON_PATH, "python3", GET_TIME)
+    os.waitpid(pid_time, 0)
     # 단순 실행 파트
     # fd = os.fdopen(f_output, "w")
 
