@@ -55,6 +55,7 @@ def call_judge_vscode(code=""):
     unmatched_func = ""
     unmatched_class = ""
     repetition_analysis = ""
+    time_analysis = ""
     compile_error = ""
     runtime_error = ""
 
@@ -121,12 +122,20 @@ def call_judge_vscode(code=""):
                 unmatched_func = f_out.readline()
                 unmatched_class = f_out.readline()
                 f_out.close()
+
+            # 실행시간 측정 결과
+            if usr_settings['timeMemoryAnalysisEnable']:
+                f_out = open(TIME_RESULT_PATH, 'r')
+                time_analysis = f_out.read()
+                # result += "\n" + f_out.read()
+                f_out.close()
             
             # 중첩 복잡도 분석 결과
-            f_out = open(REPEAT_RESULT_PATH, 'r')
-            #result += "\n" + f_out.read()
-            repetition_analysis = f_out.read()
-            f_out.close()
+            if usr_settings['duplicationAnalysisEnable']:
+                f_out = open(REPEAT_RESULT_PATH, 'r')
+                #result += "\n" + f_out.read()
+                repetition_analysis = f_out.read()
+                f_out.close()
 
         elif exit_code == 111:
             #result = "Compile Error!"
@@ -139,7 +148,7 @@ def call_judge_vscode(code=""):
 
     return jsonify([input_analysis, complexity_analysis, complexity_score, dependency_score,
     parameter_point, naming_score, unmatched_title, unmatched_variable, unmatched_func,
-    unmatched_class, repetition_analysis])
+    unmatched_class, repetition_analysis, time_analysis])
 
 @app.route('/')
 def home(code=""):
