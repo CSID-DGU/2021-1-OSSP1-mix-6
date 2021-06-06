@@ -25,8 +25,5 @@ class Time:
         execution_time = time.time() - self.start 
         f = open(TIME_RESULT_PATH, "w")
         f.write("EXECUTION TIME :" + execution_time)
-        f.close()
         print("EXECUTION TIME : " + execution_time)
-  
-
-
+        f.close()

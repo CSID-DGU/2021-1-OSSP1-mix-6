@@ -1,5 +1,5 @@
 import json
-from server.settings import TIME_RESULT_PATH
+from server.settings import *
 
 from flask import *
 import os
