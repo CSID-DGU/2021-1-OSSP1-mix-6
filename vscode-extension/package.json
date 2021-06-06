@@ -99,7 +99,7 @@
 				},
 				"judge.timeMemoryAnalysis.enable" : {
 					"type":"boolean",
-					"default":false
+					"default":true
 				},
 				"judge.timeMemoryAnalysis.timeout" : {
 					"type":"number",
