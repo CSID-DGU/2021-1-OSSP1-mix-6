@@ -61,7 +61,8 @@ function get_settings(settings) {
         inputType: settings.inputAnalysis.type,
         duplicationAnalysisEnable: settings.duplicationAnalysis.enable,
         parameterAnalysisEnable: settings.parameterAnalysis.enable,
-        dependenceAnalysisEnable: settings.dependenceAnalysis.enable
+        dependenceAnalysisEnable: settings.dependenceAnalysis.enable,
+        timeAnalysisEnable: settings.timeAnalysis.enable
     };
     return ret;
 }

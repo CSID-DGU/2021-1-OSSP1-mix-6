@@ -1,4 +1,5 @@
 import json
+from server.settings import *
 
 from flask import *
 import os
@@ -121,7 +122,13 @@ def call_judge_vscode(code=""):
                 unmatched_func = f_out.readline()
                 unmatched_class = f_out.readline()
                 f_out.close()
-            
+
+            # 실행시간 측정 결과
+            if usr_settings['timeAnalysisEnable']:
+                f_out = open(TIME_RESULT_PATH, 'r')
+                result += "\n" + f_out.read()
+                f_out.close()
+
             # 중첩 복잡도 분석 결과
             f_out = open(REPEAT_RESULT_PATH, 'r')
             #result += "\n" + f_out.read()

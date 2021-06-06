@@ -96,6 +96,10 @@
 				"judge.complexityAnalysis.enable" : {
 					"type":"boolean",
 					"default":true
+				},
+				"judge.timeAnalysis.enable" : {
+					"type":"boolean",
+					"default":true
 				}
 			}
 		}

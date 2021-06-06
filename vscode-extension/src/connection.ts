@@ -57,7 +57,9 @@ export function get_settings(settings: any) {
 
         parameterAnalysisEnable : settings.parameterAnalysis.enable,
 
-        dependenceAnalysisEnable : settings.dependenceAnalysis.enable
+        dependenceAnalysisEnable : settings.dependenceAnalysis.enable,
+
+        timeAnalysisEnable: settings.timeAnalysis.enable
     };
 
     return ret;
