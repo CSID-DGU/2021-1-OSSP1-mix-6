@@ -44,9 +44,12 @@ export function activate(context: vscode.ExtensionContext) {
 			//개선 위한 추가 코드(for result view)
 			provider.refresh();
 			//추가 코드 end
-			for (let i = res.length - 1; i >= 0; i--) {
+			for (let i = 0; i < res.length; i++){
 				provider.addTreeItem(new rv.TreeItem(res[i]));
 			}
+			/* for (let i = res.length - 1; i >= 0; i--) {
+				provider.addTreeItem(new rv.TreeItem(res[i]));
+			} */
 		})
 		
 		// Display a message box to the user

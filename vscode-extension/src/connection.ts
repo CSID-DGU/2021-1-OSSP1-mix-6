@@ -27,12 +27,13 @@ export async function get_result(_code: string, _settings: object) {
         //개선 가능(for result view)
         .then((res : any) => res.json())
         .then((res : any) => {
-            console.log(res);
-            const keys = Object.keys(res);
-            for (let i = keys.length - 1; i >= 0; i--){
-                const key = keys[i];
-                result[i] = res[key];
-                console.log(res[key]);
+            let j = 0;
+            for (var i = 0; i < res.length; i++){
+                if (res[i] !== ''){
+                    result[j] = res[i];
+                    console.log(result[j]);
+                    j++;
+                }
             }
         });
 
@@ -42,10 +43,20 @@ export async function get_result(_code: string, _settings: object) {
 export function get_settings(settings: any) {
     var ret = {
         namingAnalysisEnable: settings.namingAnalysis.enable,
+        namingRuleVariable: settings.namingAnalysis.NamingRuleVariable,
+        namingRuleFunction: settings.namingAnalysis.NamingRuleFunction,
+        namingRuleClass: settings.namingAnalysis.NamingRuleClass,
+
         complexityAnalysisEnable : settings.complexityAnalysis.enable,
+
         inputAnalysisEnable : settings.inputAnalysis.enable,
+        inputTimeout : settings.inputAnalysis.timeout,
+        inputType : settings.inputAnalysis.type,
+
         duplicationAnalysisEnable : settings.duplicationAnalysis.enable,
+
         parameterAnalysisEnable : settings.parameterAnalysis.enable,
+
         dependenceAnalysisEnable : settings.dependenceAnalysis.enable
     };
 

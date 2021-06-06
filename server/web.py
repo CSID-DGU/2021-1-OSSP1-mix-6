@@ -1,3 +1,5 @@
+import json
+
 from flask import *
 import os
 from settings import *
@@ -37,7 +39,6 @@ def call_judge(code=""):
 
     return jsonify(result)
 
-
 # vscode와 통신하는 HTTP POST 메소드
 @app.route('/vscode', methods=['POST'])
 def call_judge_vscode(code=""):
@@ -46,9 +47,13 @@ def call_judge_vscode(code=""):
     input_analysis = ""
     complexity_analysis = ""
     complexity_score = ""
-    dependence_analysis = ""
-    parameter_analysis = ""
-    naming_analysis = ""
+    dependency_score = ""
+    parameter_point = ""
+    naming_score = ""
+    unmatched_title = ""
+    unmatched_variable = ""
+    unmatched_func = ""
+    unmatched_class = ""
     repetition_analysis = ""
     compile_error = ""
     runtime_error = ""
@@ -96,21 +101,25 @@ def call_judge_vscode(code=""):
             if usr_settings['dependenceAnalysisEnable']:
                 f_out = open(DEPENDENCY_RESULT_PATH, 'r')
                 #result += "\n" + f_out.read()
-                dependence_analysis = f_out.read()
+                dependency_score = f_out.read()
                 f_out.close()
 
             # 매개변수 분석 테스트 결과
             if usr_settings['parameterAnalysisEnable']:
                 f_out = open(PARAMETER_RESULT_PATH, 'r')
                 #result += "\n" + f_out.read()
-                parameter_analysis = f_out.read()
+                parameter_point = f_out.read()
                 f_out.close()
 
             # 네이밍 규칙 분석 결과
             if usr_settings['namingAnalysisEnable']:
                 f_out = open(NAMING_RESULT_PATH, 'r')
                 #result += "\n" + f_out.read()
-                naming_analysis = f_out.read()
+                naming_score = f_out.readline()
+                unmatched_title = f_out.readline()
+                unmatched_variable = f_out.readline()
+                unmatched_func = f_out.readline()
+                unmatched_class = f_out.readline()
                 f_out.close()
             
             # 중첩 복잡도 분석 결과
@@ -122,16 +131,15 @@ def call_judge_vscode(code=""):
         elif exit_code == 111:
             #result = "Compile Error!"
             compile_error = "Compile Error!"
-            return jsonify({"compile_error": compile_error})
+            return jsonify([compile_error])
         else:
             #result = "Runtime Error!"
             runtime_error = "Runtime Error!"
-            return jsonify({"runtime_error": runtime_error})
+            return jsonify([runtime_error])
 
-    return jsonify({"input_analysis":input_analysis, "complexity_analysis":complexity_analysis,
-    "complexity_score": complexity_score, "dependence_analysis":dependence_analysis,
-    "parameter_analysis":parameter_analysis, "naming_analysis": naming_analysis, 
-    "repetition_analysis": repetition_analysis})
+    return jsonify([input_analysis, complexity_analysis, complexity_score, dependency_score,
+    parameter_point, naming_score, unmatched_title, unmatched_variable, unmatched_func,
+    unmatched_class, repetition_analysis])
 
 @app.route('/')
 def home(code=""):
