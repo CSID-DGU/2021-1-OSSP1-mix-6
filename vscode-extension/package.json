@@ -96,6 +96,20 @@
 				"judge.complexityAnalysis.enable" : {
 					"type":"boolean",
 					"default":true
+				},
+				"judge.timeMemoryAnalysis.enable" : {
+					"type":"boolean",
+					"default":true
+				},
+				"judge.timeMemoryAnalysis.timeout" : {
+					"type":"number",
+					"default":1,
+					"description":"Specify the number of seconds of timeout to be considered a failure"
+				},
+				"judge.timeMemoryAnalysis.input" : {
+					"type":"object",
+					"default": { "stdin" : "your input" },
+					"description": "Please write the standard input to test. Use \n for line breaks."
 				}
 			}
 		}

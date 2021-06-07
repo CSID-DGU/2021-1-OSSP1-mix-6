@@ -61,7 +61,10 @@ function get_settings(settings) {
         inputType: settings.inputAnalysis.type,
         duplicationAnalysisEnable: settings.duplicationAnalysis.enable,
         parameterAnalysisEnable: settings.parameterAnalysis.enable,
-        dependenceAnalysisEnable: settings.dependenceAnalysis.enable
+        dependenceAnalysisEnable: settings.dependenceAnalysis.enable,
+        timeMemoryAnalysisEnable: settings.timeMemoryAnalysis.enable,
+        timeMemoryAnalysisTimeout: settings.timeMemoryAnalysis.timeout,
+        timeMemoryAnalysisInput: settings.timeMemoryAnalysis.input
     };
     return ret;
 }

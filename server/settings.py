@@ -43,3 +43,13 @@ REPEAT_JUDGE_PATH = REPEAT_PATH + "judge_repeat.py"
 REPEAT_RESULT_PATH = REPEAT_PATH + "repeat_result.txt"
 
 INPUT_TEST_RESULT = INPUT_TEST_PATH + "input_test_result.txt"
+
+TIME_PATH = HOME_PATH + "time/"
+GET_TIME = TIME_PATH + "get_time.py"
+TIME_RESULT_PATH = TIME_PATH + "execution_time.txt"
+TIME_INPUT_PATH = TIME_PATH + "time_stdin.txt"
+
+MEMORY_PATH = HOME_PATH + "memory/"
+GET_MEMORY = MEMORY_PATH + "get_memory.py"
+MEMORY_RESULT_PATH = MEMORY_PATH + "execution_memory.txt"
+MEMORY_INPUT_PATH = MEMORY_PATH + "memory_stdin.txt"
