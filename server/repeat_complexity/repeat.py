@@ -54,7 +54,7 @@ class Repeat:
         f = open(REPEAT_RESULT_PATH, "w")
         comp_score = 100.0
         if self.item != 0:
-            comp_score = self.over_repeat / self.item * 100
+            comp_score = (self.item - self.over_repeat) / self.item * 100
         f.write("Repeat Comlexity Score : " + str(comp_score))
         f.close()
 
