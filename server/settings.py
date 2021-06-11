@@ -53,3 +53,5 @@ MEMORY_PATH = HOME_PATH + "memory/"
 GET_MEMORY = MEMORY_PATH + "get_memory.py"
 MEMORY_RESULT_PATH = MEMORY_PATH + "execution_memory.txt"
 MEMORY_INPUT_PATH = MEMORY_PATH + "memory_stdin.txt"
+
+TOTAL_SCORE = HOME_PATH + "total.txt"

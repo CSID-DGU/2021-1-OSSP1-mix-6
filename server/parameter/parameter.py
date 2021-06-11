@@ -53,4 +53,8 @@ class paraCounter:
         f_out.write("PARAMETER POINT : " + str(point))
         f_out.close()
 
+        f_total = open(TOTAL_SCORE, 'a')
+        f_total.write(str(point) + '\n')
+        f_total.close()
+
 

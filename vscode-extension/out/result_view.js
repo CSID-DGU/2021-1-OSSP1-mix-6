@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TreeItem = exports.TreeDataProvider = void 0;
+exports.TotalTreeItem = exports.TreeItem = exports.TreeDataProvider = void 0;
 const vscode = require("vscode");
+const path = require("path");
 class TreeDataProvider {
     constructor() {
         //원래코드
@@ -40,4 +41,39 @@ class TreeItem extends vscode.TreeItem {
     }
 }
 exports.TreeItem = TreeItem;
+class TotalTreeItem extends vscode.TreeItem {
+    constructor(label, collapsibleState, total_score) {
+        super(label, collapsibleState);
+        this.label = label;
+        this.collapsibleState = collapsibleState;
+        this.total_score = total_score;
+        this.iconPath = {
+            light: path.join(__filename, '..', '..', 'res', 'f.png'),
+            dark: path.join(__filename, '..', '..', 'res', 'f.png'),
+        };
+        var a_cut = 90, b_cut = 70, c_cut = 50, d_cut = 30;
+        var score = Number(total_score);
+        if (score >= a_cut) {
+            this.iconPath.light = path.join(__filename, '..', '..', 'res', 'a.png');
+            this.iconPath.dark = path.join(__filename, '..', '..', 'res', 'a.png');
+        }
+        else if (score < a_cut && score >= b_cut) {
+            this.iconPath.light = path.join(__filename, '..', '..', 'res', 'b.png');
+            this.iconPath.dark = path.join(__filename, '..', '..', 'res', 'b.png');
+        }
+        else if (score < b_cut && score >= c_cut) {
+            this.iconPath.light = path.join(__filename, '..', '..', 'res', 'c.png');
+            this.iconPath.dark = path.join(__filename, '..', '..', 'res', 'c.png');
+        }
+        else if (score < c_cut && score >= d_cut) {
+            this.iconPath.light = path.join(__filename, '..', '..', 'res', 'd.png');
+            this.iconPath.dark = path.join(__filename, '..', '..', 'res', 'd.png');
+        }
+        else {
+            this.iconPath.light = path.join(__filename, '..', '..', 'res', 'f.png');
+            this.iconPath.dark = path.join(__filename, '..', '..', 'res', 'f.png');
+        }
+    }
+}
+exports.TotalTreeItem = TotalTreeItem;
 //# sourceMappingURL=result_view.js.map

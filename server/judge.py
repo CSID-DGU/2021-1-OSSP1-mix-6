@@ -35,6 +35,9 @@ else:
 
     ############ 분석 모듈 실행 부분 ############
     # 사용자 설정 필요시 매개변수로 sys.argv[1] 전달
+    # 총 결과 파일 초기화
+    f_total = open(TOTAL_SCORE, 'w')
+    f_total.close()
 
     # 입력 제어
     pid_judge_input = os.fork()

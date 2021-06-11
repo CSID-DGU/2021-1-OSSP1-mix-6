@@ -86,3 +86,7 @@ error_result = "Input Test Success : " + str(input_score)
 f_out = open(INPUT_TEST_RESULT, 'w')
 f_out.write(error_result)
 f_out.close()
+
+f_total = open(TOTAL_SCORE, 'a')
+f_total.write(str(input_score) + '\n')
+f_total.close()
