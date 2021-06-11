@@ -79,6 +79,10 @@ class Dependency:
         f_out.write(result)
         f_out.close()
 
+        f_total = open(TOTAL_SCORE, 'a')
+        f_total.write(str(dp_score) + '\n')
+        f_total.close()
+
     def get_name_set(self, node):
         if (node.kind == cindex.CursorKind.FUNCTION_DECL
                 or node.kind == cindex.CursorKind.CXX_METHOD):

@@ -57,6 +57,7 @@ def call_judge_vscode(code=""):
     repetition_analysis = ""
     time_analysis = ""
     memory_analysis = ""
+    total_score = ""
     compile_error = ""
     runtime_error = ""
 
@@ -145,6 +146,13 @@ def call_judge_vscode(code=""):
                 repetition_analysis = f_out.read()
                 f_out.close()
 
+            f_total = open(TOTAL_SCORE, 'r')
+            score_arr = f_total.read().splitlines()
+            score_arr = [float(i) for i in score_arr]
+            avg = round(sum(score_arr, 0.0) / len(score_arr), 2)
+            total_score = str(avg)
+            f_total.close()
+
         elif exit_code == 111:
             #result = "Compile Error!"
             compile_error = "Compile Error!"
@@ -156,7 +164,7 @@ def call_judge_vscode(code=""):
 
     return jsonify([input_analysis, complexity_analysis, complexity_score, dependency_score,
     parameter_point, naming_score, unmatched_title, unmatched_variable, unmatched_func,
-    unmatched_class, repetition_analysis, time_analysis, memory_analysis])
+    unmatched_class, repetition_analysis, time_analysis, memory_analysis, total_score])
 
 @app.route('/')
 def home(code=""):

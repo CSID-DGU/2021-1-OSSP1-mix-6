@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
 
 export class TreeDataProvider implements vscode.TreeDataProvider<TreeItem> {
 	//원래코드
@@ -47,4 +48,42 @@ export class TreeItem extends vscode.TreeItem {
 				vscode.TreeItemCollapsibleState.Expanded);
 		this.children = children;
 	}
+}
+
+export class TotalTreeItem extends vscode.TreeItem {
+	children: TreeItem[] | undefined;
+	public iconPath = {
+		light: path.join(__filename, '..', '..', 'res', 'f.png'),
+		dark: path.join(__filename, '..', '..', 'res', 'f.png'),
+	};
+
+	constructor(
+	  public readonly label: string,
+	  public readonly collapsibleState: vscode.TreeItemCollapsibleState,
+	  public total_score: string
+	) {
+		super(label, collapsibleState);
+		
+		var a_cut = 90, b_cut = 70, c_cut = 50, d_cut = 30;
+		var score = Number(total_score);
+		
+		if(score >= a_cut) {
+			this.iconPath.light = path.join(__filename, '..', '..', 'res', 'a.png');
+			this.iconPath.dark = path.join(__filename, '..', '..', 'res', 'a.png');
+		} else if(score < a_cut && score >= b_cut) {
+			this.iconPath.light = path.join(__filename, '..', '..', 'res', 'b.png');
+			this.iconPath.dark = path.join(__filename, '..', '..', 'res', 'b.png');
+		} else if(score < b_cut && score >= c_cut) {
+			this.iconPath.light = path.join(__filename, '..', '..', 'res', 'c.png');
+			this.iconPath.dark = path.join(__filename, '..', '..', 'res', 'c.png');
+		} else if(score < c_cut && score >= d_cut) {
+			this.iconPath.light = path.join(__filename, '..', '..', 'res', 'd.png');
+			this.iconPath.dark = path.join(__filename, '..', '..', 'res', 'd.png');
+		} else {
+			this.iconPath.light = path.join(__filename, '..', '..', 'res', 'f.png');
+			this.iconPath.dark = path.join(__filename, '..', '..', 'res', 'f.png');
+		}
+
+	}
+
 }

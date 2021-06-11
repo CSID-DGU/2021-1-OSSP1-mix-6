@@ -27,4 +27,7 @@ int main(){
     score = 100 * pow(M_PI,-(num * num)/3000);
     fprintf(f,"Cyclomatic Complexity : %d\n",count);
     fprintf(f,"Cyclomatic Score : %d\n",score);
+
+    FILE *f2 = fopen("/app/total.txt","a");
+    fprintf(f2,"%d\n",score);
 } 

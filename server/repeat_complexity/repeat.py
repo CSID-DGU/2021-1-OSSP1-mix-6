@@ -58,6 +58,10 @@ class Repeat:
         f.write("Repeat Comlexity Score : " + str(comp_score))
         f.close()
 
+        f_total = open(TOTAL_SCORE, 'a')
+        f_total.write(str(comp_score) + '\n')
+        f_total.close()
+
     def get_loop(self, node, i=0):
         if (node.kind == cindex.CursorKind.FOR_STMT
                 or node.kind == cindex.CursorKind.WHILE_STMT

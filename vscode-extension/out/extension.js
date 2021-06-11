@@ -37,9 +37,11 @@ function activate(context) {
             //개선 위한 추가 코드(for result view)
             provider.refresh();
             //추가 코드 end
-            for (let i = 0; i < res.length; i++) {
+            for (let i = 0; i < res.length - 1; i++) {
                 provider.addTreeItem(new rv.TreeItem(res[i]));
             }
+            provider.addTreeItem(new rv.TreeItem("-------------------------------"));
+            provider.addTreeItem(new rv.TotalTreeItem("Total Score : " + res[res.length - 1], vscode.TreeItemCollapsibleState.None, res[res.length - 1]));
         });
         // Display a message box to the user
         vscode.window.showInformationMessage('Judge Start');
