@@ -55,6 +55,7 @@ def call_judge_vscode(code=""):
     unmatched_func = ""
     unmatched_class = ""
     repetition_analysis = ""
+    duplication_analysis = ""
     time_analysis = ""
     memory_analysis = ""
     total_score = ""
@@ -146,6 +147,14 @@ def call_judge_vscode(code=""):
                 repetition_analysis = f_out.read()
                 f_out.close()
 
+            # 코드 중복 분석 결과
+            if usr_settings['duplicationCodeAnalysisEnable']:
+                f_out = open(DUPLICATION_RESULT_PATH, 'r')
+                #result += "\n" + f_out.read()
+                duplication_analysis = f_out.read()
+                f_out.close()
+
+
             f_total = open(TOTAL_SCORE, 'r')
             score_arr = f_total.read().splitlines()
             score_arr = [float(i) for i in score_arr]
@@ -164,7 +173,7 @@ def call_judge_vscode(code=""):
 
     return jsonify([input_analysis, complexity_analysis, complexity_score, dependency_score,
     parameter_point, naming_score, unmatched_title, unmatched_variable, unmatched_func,
-    unmatched_class, repetition_analysis, time_analysis, memory_analysis, total_score])
+    unmatched_class, repetition_analysis, time_analysis, memory_analysis, duplication_analysis, total_score])
 
 @app.route('/')
 def home(code=""):

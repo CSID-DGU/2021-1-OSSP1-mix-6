@@ -93,6 +93,10 @@
 					"type":"boolean",
 					"default":true
 				},
+				"judge.duplicationCodeAnalysis.enable" : {
+					"type":"boolean",
+					"default":true
+				},
 				"judge.complexityAnalysis.enable" : {
 					"type":"boolean",
 					"default":true
