@@ -54,4 +54,8 @@ GET_MEMORY = MEMORY_PATH + "get_memory.py"
 MEMORY_RESULT_PATH = MEMORY_PATH + "execution_memory.txt"
 MEMORY_INPUT_PATH = MEMORY_PATH + "memory_stdin.txt"
 
+DUPLICATION_PATH = HOME_PATH + "duplication/"
+GET_DUPLICATION_PATH = DUPLICATION_PATH + "get_duplication.py"
+DUPLICATION_RESULT_PATH = DUPLICATION_PATH + "duplication_result.txt"
+
 TOTAL_SCORE = HOME_PATH + "total.txt"
