@@ -50,7 +50,7 @@ class paraCounter:
         if self.Normal_count != 0:
             point = ((self.Normal_count-self.Over_count)/self.Normal_count) * 100
         f_out = open(DUPLICATION_RESULT_PATH,'w')
-        f_out.write("Parameter Score : " + str(point))
+        f_out.write("Duplication Score : " + str(point))
         f_out.close()
 
         f_total = open(TOTAL_SCORE, 'a')
