@@ -16,6 +16,7 @@ cindex.Config.set_library_file("/usr/lib/llvm-7/lib/libclang-7.so.1")
 #중복 개수 체크
 class duplication:
     duplication_count = 0.0
+    linetup1 = ()
 
     def __init__(self,path):
         self.path = path
@@ -41,6 +42,20 @@ class duplication:
             else:
                 continue
             
+    def traverse(self, node, i=0):
+        print('\t' * i, end="")
+        print(node.kind, end="")
+        print(" : ", end="")
+        print(node.displayname, end=" ")
+        print(node.location.line, end="")
+        print("")
+        for child in node.get_children():
+            if str(self.path) == str(child.location.file):
+                self.traverse(child, i=i + 1)
+            else:
+                continue
+
+
     def print_result(self):
         point = 100.0
         if self.duplication_count != 0:
