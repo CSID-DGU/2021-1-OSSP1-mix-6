@@ -60,12 +60,14 @@ class duplication:
             for j in range(i + 1, sz):
                 if self.linetup1[i] == self.linetup1[j]:
                     self.duplication_count += 1
+                    break
 
     def print_result(self):
         point = 100.0
         print(self.duplication_count)
         if self.max_line != 0:
-            point = max(0, point - self.duplication_count)
+            point =  ((float(self.max_line) - self.duplication_count) / float(self.max_line)) * 100
+            point = round(point,2)
 
         f_out = open(DUPLICATION_RESULT_PATH, 'w')
         f_out.write("Duplication Score : " + str(point))
