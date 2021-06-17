@@ -1,4 +1,3 @@
-from server.duplication.duplication import duplication
 from duplication import *
 sys.path.append(os.path.abspath('./'))
 from settings import *

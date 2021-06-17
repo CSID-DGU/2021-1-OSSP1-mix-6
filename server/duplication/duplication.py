@@ -17,6 +17,7 @@ cindex.Config.set_library_file("/usr/lib/llvm-7/lib/libclang-7.so.1")
 class duplication:
     duplication_count = 0.0
     linetup1 = ()
+    nindex = 0
 
     def __init__(self,path):
         self.path = path
@@ -43,12 +44,7 @@ class duplication:
                 continue
             
     def traverse(self, node, i=0):
-        print('\t' * i, end="")
-        print(node.kind, end="")
-        print(" : ", end="")
-        print(node.displayname, end=" ")
-        print(node.location.line, end="")
-        print("")
+        self.linetup1[self.nindex] += node.spelling
         for child in node.get_children():
             if str(self.path) == str(child.location.file):
                 self.traverse(child, i=i + 1)
