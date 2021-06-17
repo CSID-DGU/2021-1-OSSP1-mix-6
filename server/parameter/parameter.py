@@ -59,6 +59,7 @@ class paraCounter:
         point = 100.0
         if self.Normal_count != 0:
             point = ((self.Normal_count-self.Over_count)/self.Normal_count) * 100
+            point = round(point,2)
         # f_out = open(PARAMETER_RESULT_PATH,'w')
         f_out = open("result.txt",'w')
         f_out.write("Parameter Score : " + str(point))
