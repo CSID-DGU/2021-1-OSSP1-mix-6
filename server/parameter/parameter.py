@@ -23,38 +23,50 @@ class paraCounter:
         self.func = ""
         index = cindex.Index.create(False)
         tu = index.parse(self.path)
+        #self.f_over = open("result2.txt",'w')
+        #self.over = ""
         self.find_param(tu.cursor)
 
     def find_param(self,node):
-        if (node.kind == cindex.CursorKind.FUNCTION_DECL):
+        if (node.kind == cindex.CursorKind.FUNCTION_DECL or
+            node.kind == cindex.CursorKind.CXX_METHOD or 
+            node.kind == cindex.CursorKind.CONSTRUCTOR):
+
             self.func = node.spelling
             self.Normal_count += 1.0
             self.p_count = 0.0
         
-        if (node.kind == cindex.CursorKind.PARM_DECL):
-            self.p_count += 1.0
-            if(self.p_count > 3.0):
-                self.Over_count += 1.0
-                f_out = open(PARAMETER_RESULT_PATH,'w')
-                f_out.write("OverParameter Function : " + self.func)
-                f_out.close()
-               
         for child in node.get_children():
-            if(str(self.path) == str(child.location.file)):
-                self.find_param(child)
-            else:
-                continue
+                if (child.kind == cindex.CursorKind.PARM_DECL):
+                    self.p_count += 1.0
+                    if(self.p_count > 3.0):
+                        self.Over_count += 1.0
+                        # f_out = open(PARAMETER_RESULT_PATH,'w')
+                        #self.over += "\nOverParameter Function : " + self.func
+                        break
+
+               
+        else:
+            for child in node.get_children():
+                if(str(self.path) == str(child.location.file)):
+                    self.find_param(child)
+                else:
+                    continue
     
     def print_result(self):
+        #self.over += "\n" + str(self.Normal_count) + "\n" + str(self.Over_count)
+        #self.f_over.write(self.over)
         point = 100.0
         if self.Normal_count != 0:
             point = ((self.Normal_count-self.Over_count)/self.Normal_count) * 100
-        f_out = open(PARAMETER_RESULT_PATH,'w')
+        # f_out = open(PARAMETER_RESULT_PATH,'w')
+        f_out = open("result.txt",'w')
         f_out.write("Parameter Score : " + str(point))
         f_out.close()
 
-        f_total = open(TOTAL_SCORE, 'a')
-        f_total.write(str(point) + '\n')
-        f_total.close()
+        # f_total = open(TOTAL_SCORE, 'a')
+        # f_total.write(str(point) + '\n')
+        # f_total.close()
+
 
 
